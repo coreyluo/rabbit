@@ -34,6 +34,7 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
 					<execution>
+
 						<id>attach-sources</id>
 						<phase>verify</phase>
 						<goals>
