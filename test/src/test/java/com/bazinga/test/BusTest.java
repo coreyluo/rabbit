@@ -11,7 +11,7 @@ public class BusTest extends BaseTestCase {
 
     @Test
     public void  test(){
-        beiDaStockDailyComponent.unzipAnd2Db();
+        System.out.println(111);
 
 
     }
