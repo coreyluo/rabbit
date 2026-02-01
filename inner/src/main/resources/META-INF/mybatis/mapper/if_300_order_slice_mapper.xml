@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.If300OrderSliceDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.If300OrderSlice">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="time_trade" jdbcType="VARCHAR" property="timeTrade"/>
+        <result column="buy_count_10" jdbcType="DECIMAL" property="buyCount10"/>
+        <result column="buy_count_20" jdbcType="DECIMAL" property="buyCount20"/>
+        <result column="buy_count_50" jdbcType="DECIMAL" property="buyCount50"/>
+        <result column="buy_count_100" jdbcType="DECIMAL" property="buyCount100"/>
+        <result column="buy_count_200" jdbcType="DECIMAL" property="buyCount200"/>
+        <result column="buy_count_over_200" jdbcType="DECIMAL" property="buyCountOver200"/>
+        <result column="sell_count_10" jdbcType="DECIMAL" property="sellCount10"/>
+        <result column="sell_count_20" jdbcType="DECIMAL" property="sellCount20"/>
+        <result column="sell_count_50" jdbcType="DECIMAL" property="sellCount50"/>
+        <result column="sell_count_100" jdbcType="DECIMAL" property="sellCount100"/>
+        <result column="sell_count_200" jdbcType="DECIMAL" property="sellCount200"/>
+        <result column="sell_count_over_200" jdbcType="DECIMAL" property="sellCountOver200"/>
+        <result column="buy_volume_10" jdbcType="DECIMAL" property="buyVolume10"/>
+        <result column="buy_volume_20" jdbcType="DECIMAL" property="buyVolume20"/>
+        <result column="buy_volume_50" jdbcType="DECIMAL" property="buyVolume50"/>
+        <result column="buy_volume_100" jdbcType="DECIMAL" property="buyVolume100"/>
+        <result column="buy_volume_200" jdbcType="DECIMAL" property="buyVolume200"/>
+        <result column="buy_volume_over_200" jdbcType="DECIMAL" property="buyVolumeOver200"/>
+        <result column="sell_volume_10" jdbcType="DECIMAL" property="sellVolume10"/>
+        <result column="sell_volume_20" jdbcType="DECIMAL" property="sellVolume20"/>
+        <result column="sell_volume_50" jdbcType="DECIMAL" property="sellVolume50"/>
+        <result column="sell_volume_100" jdbcType="DECIMAL" property="sellVolume100"/>
+        <result column="sell_volume_200" jdbcType="DECIMAL" property="sellVolume200"/>
+        <result column="sell_volume_over_200" jdbcType="DECIMAL" property="sellVolumeOver200"/>
+        <result column="buy_money_10" jdbcType="DECIMAL" property="buyMoney10"/>
+        <result column="buy_money_20" jdbcType="DECIMAL" property="buyMoney20"/>
+        <result column="buy_money_50" jdbcType="DECIMAL" property="buyMoney50"/>
+        <result column="buy_money_100" jdbcType="DECIMAL" property="buyMoney100"/>
+        <result column="buy_money_200" jdbcType="DECIMAL" property="buyMoney200"/>
+        <result column="buy_money_over_200" jdbcType="DECIMAL" property="buyMoneyOver200"/>
+        <result column="sell_money_10" jdbcType="DECIMAL" property="sellMoney10"/>
+        <result column="sell_money_20" jdbcType="DECIMAL" property="sellMoney20"/>
+        <result column="sell_money_50" jdbcType="DECIMAL" property="sellMoney50"/>
+        <result column="sell_money_100" jdbcType="DECIMAL" property="sellMoney100"/>
+        <result column="sell_money_200" jdbcType="DECIMAL" property="sellMoney200"/>
+        <result column="sell_money_over_200" jdbcType="DECIMAL" property="sellMoneyOver200"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            trade_date,
+            time_trade,
+            buy_count_10,
+            buy_count_20,
+            buy_count_50,
+            buy_count_100,
+            buy_count_200,
+            buy_count_over_200,
+            sell_count_10,
+            sell_count_20,
+            sell_count_50,
+            sell_count_100,
+            sell_count_200,
+            sell_count_over_200,
+            buy_volume_10,
+            buy_volume_20,
+            buy_volume_50,
+            buy_volume_100,
+            buy_volume_200,
+            buy_volume_over_200,
+            sell_volume_10,
+            sell_volume_20,
+            sell_volume_50,
+            sell_volume_100,
+            sell_volume_200,
+            sell_volume_over_200,
+            buy_money_10,
+            buy_money_20,
+            buy_money_50,
+            buy_money_100,
+            buy_money_200,
+            buy_money_over_200,
+            sell_money_10,
+            sell_money_20,
+            sell_money_50,
+            sell_money_100,
+            sell_money_200,
+            sell_money_over_200,
+            unique_key
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from if_300_order_slice
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from if_300_order_slice
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.If300OrderSlice">
+        update if_300_order_slice
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="tradeDate != null">
+            trade_date = #{tradeDate, jdbcType=VARCHAR},
+        </if>
+        <if test="timeTrade != null">
+            time_trade = #{timeTrade, jdbcType=VARCHAR},
+        </if>
+        <if test="buyCount10 != null">
+            buy_count_10 = #{buyCount10, jdbcType=DECIMAL},
+        </if>
+        <if test="buyCount20 != null">
+            buy_count_20 = #{buyCount20, jdbcType=DECIMAL},
+        </if>
+        <if test="buyCount50 != null">
+            buy_count_50 = #{buyCount50, jdbcType=DECIMAL},
+        </if>
+        <if test="buyCount100 != null">
+            buy_count_100 = #{buyCount100, jdbcType=DECIMAL},
+        </if>
+        <if test="buyCount200 != null">
+            buy_count_200 = #{buyCount200, jdbcType=DECIMAL},
+        </if>
+        <if test="buyCountOver200 != null">
+            buy_count_over_200 = #{buyCountOver200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCount10 != null">
+            sell_count_10 = #{sellCount10, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCount20 != null">
+            sell_count_20 = #{sellCount20, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCount50 != null">
+            sell_count_50 = #{sellCount50, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCount100 != null">
+            sell_count_100 = #{sellCount100, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCount200 != null">
+            sell_count_200 = #{sellCount200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellCountOver200 != null">
+            sell_count_over_200 = #{sellCountOver200, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume10 != null">
+            buy_volume_10 = #{buyVolume10, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume20 != null">
+            buy_volume_20 = #{buyVolume20, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume50 != null">
+            buy_volume_50 = #{buyVolume50, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume100 != null">
+            buy_volume_100 = #{buyVolume100, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume200 != null">
+            buy_volume_200 = #{buyVolume200, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolumeOver200 != null">
+            buy_volume_over_200 = #{buyVolumeOver200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume10 != null">
+            sell_volume_10 = #{sellVolume10, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume20 != null">
+            sell_volume_20 = #{sellVolume20, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume50 != null">
+            sell_volume_50 = #{sellVolume50, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume100 != null">
+            sell_volume_100 = #{sellVolume100, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume200 != null">
+            sell_volume_200 = #{sellVolume200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolumeOver200 != null">
+            sell_volume_over_200 = #{sellVolumeOver200, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoney10 != null">
+            buy_money_10 = #{buyMoney10, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoney20 != null">
+            buy_money_20 = #{buyMoney20, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoney50 != null">
+            buy_money_50 = #{buyMoney50, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoney100 != null">
+            buy_money_100 = #{buyMoney100, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoney200 != null">
+            buy_money_200 = #{buyMoney200, jdbcType=DECIMAL},
+        </if>
+        <if test="buyMoneyOver200 != null">
+            buy_money_over_200 = #{buyMoneyOver200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoney10 != null">
+            sell_money_10 = #{sellMoney10, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoney20 != null">
+            sell_money_20 = #{sellMoney20, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoney50 != null">
+            sell_money_50 = #{sellMoney50, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoney100 != null">
+            sell_money_100 = #{sellMoney100, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoney200 != null">
+            sell_money_200 = #{sellMoney200, jdbcType=DECIMAL},
+        </if>
+        <if test="sellMoneyOver200 != null">
+            sell_money_over_200 = #{sellMoneyOver200, jdbcType=DECIMAL},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.If300OrderSlice" useGeneratedKeys="true" keyProperty="id">
+        insert into if_300_order_slice (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{timeTrade, jdbcType=VARCHAR},
+            #{buyCount10, jdbcType=DECIMAL},
+            #{buyCount20, jdbcType=DECIMAL},
+            #{buyCount50, jdbcType=DECIMAL},
+            #{buyCount100, jdbcType=DECIMAL},
+            #{buyCount200, jdbcType=DECIMAL},
+            #{buyCountOver200, jdbcType=DECIMAL},
+            #{sellCount10, jdbcType=DECIMAL},
+            #{sellCount20, jdbcType=DECIMAL},
+            #{sellCount50, jdbcType=DECIMAL},
+            #{sellCount100, jdbcType=DECIMAL},
+            #{sellCount200, jdbcType=DECIMAL},
+            #{sellCountOver200, jdbcType=DECIMAL},
+            #{buyVolume10, jdbcType=DECIMAL},
+            #{buyVolume20, jdbcType=DECIMAL},
+            #{buyVolume50, jdbcType=DECIMAL},
+            #{buyVolume100, jdbcType=DECIMAL},
+            #{buyVolume200, jdbcType=DECIMAL},
+            #{buyVolumeOver200, jdbcType=DECIMAL},
+            #{sellVolume10, jdbcType=DECIMAL},
+            #{sellVolume20, jdbcType=DECIMAL},
+            #{sellVolume50, jdbcType=DECIMAL},
+            #{sellVolume100, jdbcType=DECIMAL},
+            #{sellVolume200, jdbcType=DECIMAL},
+            #{sellVolumeOver200, jdbcType=DECIMAL},
+            #{buyMoney10, jdbcType=DECIMAL},
+            #{buyMoney20, jdbcType=DECIMAL},
+            #{buyMoney50, jdbcType=DECIMAL},
+            #{buyMoney100, jdbcType=DECIMAL},
+            #{buyMoney200, jdbcType=DECIMAL},
+            #{buyMoneyOver200, jdbcType=DECIMAL},
+            #{sellMoney10, jdbcType=DECIMAL},
+            #{sellMoney20, jdbcType=DECIMAL},
+            #{sellMoney50, jdbcType=DECIMAL},
+            #{sellMoney100, jdbcType=DECIMAL},
+            #{sellMoney200, jdbcType=DECIMAL},
+            #{sellMoneyOver200, jdbcType=DECIMAL},
+            #{uniqueKey, jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.If300OrderSlice">
+        update if_300_order_slice
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="timeTrade != null">
+                time_trade = #{timeTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="buyCount10 != null">
+                buy_count_10 = #{buyCount10, jdbcType=DECIMAL},
+            </if>
+            <if test="buyCount20 != null">
+                buy_count_20 = #{buyCount20, jdbcType=DECIMAL},
+            </if>
+            <if test="buyCount50 != null">
+                buy_count_50 = #{buyCount50, jdbcType=DECIMAL},
+            </if>
+            <if test="buyCount100 != null">
+                buy_count_100 = #{buyCount100, jdbcType=DECIMAL},
+            </if>
+            <if test="buyCount200 != null">
+                buy_count_200 = #{buyCount200, jdbcType=DECIMAL},
+            </if>
+            <if test="buyCountOver200 != null">
+                buy_count_over_200 = #{buyCountOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCount10 != null">
+                sell_count_10 = #{sellCount10, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCount20 != null">
+                sell_count_20 = #{sellCount20, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCount50 != null">
+                sell_count_50 = #{sellCount50, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCount100 != null">
+                sell_count_100 = #{sellCount100, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCount200 != null">
+                sell_count_200 = #{sellCount200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellCountOver200 != null">
+                sell_count_over_200 = #{sellCountOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume10 != null">
+                buy_volume_10 = #{buyVolume10, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume20 != null">
+                buy_volume_20 = #{buyVolume20, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume50 != null">
+                buy_volume_50 = #{buyVolume50, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume100 != null">
+                buy_volume_100 = #{buyVolume100, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume200 != null">
+                buy_volume_200 = #{buyVolume200, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolumeOver200 != null">
+                buy_volume_over_200 = #{buyVolumeOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume10 != null">
+                sell_volume_10 = #{sellVolume10, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume20 != null">
+                sell_volume_20 = #{sellVolume20, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume50 != null">
+                sell_volume_50 = #{sellVolume50, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume100 != null">
+                sell_volume_100 = #{sellVolume100, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume200 != null">
+                sell_volume_200 = #{sellVolume200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolumeOver200 != null">
+                sell_volume_over_200 = #{sellVolumeOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoney10 != null">
+                buy_money_10 = #{buyMoney10, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoney20 != null">
+                buy_money_20 = #{buyMoney20, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoney50 != null">
+                buy_money_50 = #{buyMoney50, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoney100 != null">
+                buy_money_100 = #{buyMoney100, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoney200 != null">
+                buy_money_200 = #{buyMoney200, jdbcType=DECIMAL},
+            </if>
+            <if test="buyMoneyOver200 != null">
+                buy_money_over_200 = #{buyMoneyOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoney10 != null">
+                sell_money_10 = #{sellMoney10, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoney20 != null">
+                sell_money_20 = #{sellMoney20, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoney50 != null">
+                sell_money_50 = #{sellMoney50, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoney100 != null">
+                sell_money_100 = #{sellMoney100, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoney200 != null">
+                sell_money_200 = #{sellMoney200, jdbcType=DECIMAL},
+            </if>
+            <if test="sellMoneyOver200 != null">
+                sell_money_over_200 = #{sellMoneyOver200, jdbcType=DECIMAL},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="timeTrade != null">
+            and time_trade = #{timeTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="buyCount10 != null">
+            and buy_count_10 = #{buyCount10, jdbcType=DECIMAL}
+        </if>
+        <if test="buyCount20 != null">
+            and buy_count_20 = #{buyCount20, jdbcType=DECIMAL}
+        </if>
+        <if test="buyCount50 != null">
+            and buy_count_50 = #{buyCount50, jdbcType=DECIMAL}
+        </if>
+        <if test="buyCount100 != null">
+            and buy_count_100 = #{buyCount100, jdbcType=DECIMAL}
+        </if>
+        <if test="buyCount200 != null">
+            and buy_count_200 = #{buyCount200, jdbcType=DECIMAL}
+        </if>
+        <if test="buyCountOver200 != null">
+            and buy_count_over_200 = #{buyCountOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCount10 != null">
+            and sell_count_10 = #{sellCount10, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCount20 != null">
+            and sell_count_20 = #{sellCount20, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCount50 != null">
+            and sell_count_50 = #{sellCount50, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCount100 != null">
+            and sell_count_100 = #{sellCount100, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCount200 != null">
+            and sell_count_200 = #{sellCount200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellCountOver200 != null">
+            and sell_count_over_200 = #{sellCountOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume10 != null">
+            and buy_volume_10 = #{buyVolume10, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume20 != null">
+            and buy_volume_20 = #{buyVolume20, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume50 != null">
+            and buy_volume_50 = #{buyVolume50, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume100 != null">
+            and buy_volume_100 = #{buyVolume100, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume200 != null">
+            and buy_volume_200 = #{buyVolume200, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolumeOver200 != null">
+            and buy_volume_over_200 = #{buyVolumeOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume10 != null">
+            and sell_volume_10 = #{sellVolume10, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume20 != null">
+            and sell_volume_20 = #{sellVolume20, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume50 != null">
+            and sell_volume_50 = #{sellVolume50, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume100 != null">
+            and sell_volume_100 = #{sellVolume100, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume200 != null">
+            and sell_volume_200 = #{sellVolume200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolumeOver200 != null">
+            and sell_volume_over_200 = #{sellVolumeOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoney10 != null">
+            and buy_money_10 = #{buyMoney10, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoney20 != null">
+            and buy_money_20 = #{buyMoney20, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoney50 != null">
+            and buy_money_50 = #{buyMoney50, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoney100 != null">
+            and buy_money_100 = #{buyMoney100, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoney200 != null">
+            and buy_money_200 = #{buyMoney200, jdbcType=DECIMAL}
+        </if>
+        <if test="buyMoneyOver200 != null">
+            and buy_money_over_200 = #{buyMoneyOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoney10 != null">
+            and sell_money_10 = #{sellMoney10, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoney20 != null">
+            and sell_money_20 = #{sellMoney20, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoney50 != null">
+            and sell_money_50 = #{sellMoney50, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoney100 != null">
+            and sell_money_100 = #{sellMoney100, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoney200 != null">
+            and sell_money_200 = #{sellMoney200, jdbcType=DECIMAL}
+        </if>
+        <if test="sellMoneyOver200 != null">
+            and sell_money_over_200 = #{sellMoneyOver200, jdbcType=DECIMAL}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.If300OrderSliceQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from if_300_order_slice
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.If300OrderSliceQuery" resultType="java.lang.Integer">
+        select count(1)
+        from if_300_order_slice
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

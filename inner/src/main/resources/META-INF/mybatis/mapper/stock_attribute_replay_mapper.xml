@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockAttributeReplayDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockAttributeReplay">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="avg_range_day10" jdbcType="DECIMAL" property="avgRangeDay10"/>
+        <result column="avg_amount_day5" jdbcType="DECIMAL" property="avgAmountDay5"/>
+        <result column="rate_day5" jdbcType="DECIMAL" property="rateDay5"/>
+        <result column="rate_day3" jdbcType="DECIMAL" property="rateDay3"/>
+        <result column="market_new" jdbcType="TINYINT" property="marketNew"/>
+        <result column="market_value" jdbcType="DECIMAL" property="marketValue"/>
+        <result column="planks_day10" jdbcType="TINYINT" property="planksDay10"/>
+        <result column="close_planks_day10" jdbcType="TINYINT" property="closePlanksDay10"/>
+        <result column="high_rate" jdbcType="DECIMAL" property="highRate"/>
+        <result column="upper_shadow_rate" jdbcType="DECIMAL" property="upperShadowRate"/>
+        <result column="avg_rate5" jdbcType="DECIMAL" property="avgRate5"/>
+        <result column="high_time" jdbcType="VARCHAR" property="highTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            kbar_date,
+            unique_key,
+            avg_range_day10,
+            avg_amount_day5,
+            rate_day5,
+            rate_day3,
+            market_new,
+            market_value,
+            planks_day10,
+            close_planks_day10,
+            high_rate,
+            upper_shadow_rate,
+            avg_rate5,
+            high_time,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_attribute_replay
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_attribute_replay
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.StockAttributeReplay">
+        update stock_attribute_replay
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="stockName != null">
+            stock_name = #{stockName, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarDate != null">
+            kbar_date = #{kbarDate, jdbcType=VARCHAR},
+        </if>
+        <if test="avgRangeDay10 != null">
+            avg_range_day10 = #{avgRangeDay10, jdbcType=DECIMAL},
+        </if>
+            <if test="rateDay5 != null">
+                rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay3 != null">
+                rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="marketNew != null">
+                market_new = #{marketNew, jdbcType=TINYINT},
+            </if>
+            <if test="marketValue != null">
+                market_value = #{marketValue, jdbcType=DECIMAL},
+            </if>
+            <if test="planksDay10 != null">
+                planks_day10 = #{planksDay10, jdbcType=TINYINT},
+            </if>
+            <if test="highRate != null">
+                high_rate = #{highRate, jdbcType=DECIMAL},
+            </if>
+            <if test="upperShadowRate != null">
+                upper_shadow_rate = #{upperShadowRate, jdbcType=DECIMAL},
+            </if>
+            <if test="avgRate5 != null">
+                avg_rate5 = #{avgRate5, jdbcType=DECIMAL},
+            </if>
+            <if test="highTime != null">
+                high_time = #{highTime, jdbcType=VARCHAR},
+            </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockAttributeReplay" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_attribute_replay (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{avgRangeDay10, jdbcType=DECIMAL},
+            #{avgAmountDay5, jdbcType=DECIMAL},
+        #{rateDay5, jdbcType=DECIMAL},
+        #{rateDay3, jdbcType=DECIMAL},
+        #{marketNew, jdbcType=TINYINT},
+        #{marketValue, jdbcType=DECIMAL},
+        #{planksDay10, jdbcType=TINYINT},
+        #{closePlanksDay10, jdbcType=TINYINT},
+        #{highRate, jdbcType=DECIMAL},
+        #{upperShadowRate, jdbcType=DECIMAL},
+        #{avgRate5, jdbcType=DECIMAL},
+        #{highTime, jdbcType=VARCHAR},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockAttributeReplay">
+        update stock_attribute_replay
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="avgRangeDay10 != null">
+                avg_range_day10 = #{avgRangeDay10, jdbcType=DECIMAL},
+            </if>
+                <if test="rateDay5 != null">
+                    rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+                </if>
+            <if test="rateDay3 != null">
+                rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+            </if>
+                <if test="marketNew != null">
+                    market_new = #{marketNew, jdbcType=TINYINT},
+                </if>
+                <if test="marketValue != null">
+                    market_value = #{marketValue, jdbcType=DECIMAL},
+                </if>
+                <if test="plankDay10 != null">
+                    plank_day10 = #{plankDay10, jdbcType=TINYINT},
+                </if>
+                <if test="highRate != null">
+                    high_rate = #{highRate, jdbcType=DECIMAL},
+                </if>
+                <if test="upperShadowRate != null">
+                    upper_shadow_rate = #{upperShadowRate, jdbcType=DECIMAL},
+                </if>
+                <if test="avgRate5 != null">
+                    avg_rate5 = #{avgRate5, jdbcType=DECIMAL},
+                </if>
+                <if test="highTime != null">
+                    high_time = #{highTime, jdbcType=VARCHAR},
+                </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="avgRangeDay10 != null">
+            and avg_range_day10 = #{avgRangeDay10, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockAttributeReplayQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_attribute_replay
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockAttributeReplayQuery" resultType="java.lang.Integer">
+        select count(1)
+        from stock_attribute_replay
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

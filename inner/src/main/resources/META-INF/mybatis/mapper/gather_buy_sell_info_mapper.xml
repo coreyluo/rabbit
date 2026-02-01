@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.GatherBuySellInfoDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.GatherBuySellInfo">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="gather_buy_amount" jdbcType="DECIMAL" property="gatherBuyAmount"/>
+        <result column="gather_sell_amount" jdbcType="DECIMAL" property="gatherSellAmount"/>
+        <result column="pre_trade_amount" jdbcType="DECIMAL" property="preTradeAmount"/>
+        <result column="buy_trade_amount_ratio" jdbcType="DECIMAL" property="buyTradeAmountRatio"/>
+        <result column="sell_trade_amount_ratio" jdbcType="DECIMAL" property="sellTradeAmountRatio"/>
+        <result column="buy_sell_ratio" jdbcType="DECIMAL" property="buySellRatio"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            kbar_date,
+            gather_buy_amount,
+            gather_sell_amount,
+            pre_trade_amount,
+            buy_trade_amount_ratio,
+            sell_trade_amount_ratio,
+            buy_sell_ratio,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from gather_buy_sell_info
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByKbarDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from gather_buy_sell_info
+        where kbar_date = #{kbarDate} limit 1
+    </select>
+
+    <update id="updateByKbarDate" parameterType="com.bazinga.replay.model.GatherBuySellInfo">
+        update gather_buy_sell_info
+        <set>
+        <if test="gatherBuyAmount != null">
+            gather_buy_amount = #{gatherBuyAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="gatherSellAmount != null">
+            gather_sell_amount = #{gatherSellAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="preTradeAmount != null">
+            pre_trade_amount = #{preTradeAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="buyTradeAmountRatio != null">
+            buy_trade_amount_ratio = #{buyTradeAmountRatio, jdbcType=DECIMAL},
+        </if>
+        <if test="sellTradeAmountRatio != null">
+            sell_trade_amount_ratio = #{sellTradeAmountRatio, jdbcType=DECIMAL},
+        </if>
+        <if test="buySellRatio != null">
+            buy_sell_ratio = #{buySellRatio, jdbcType=DECIMAL},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where kbar_date = #{kbarDate} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.GatherBuySellInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into gather_buy_sell_info (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{gatherBuyAmount, jdbcType=DECIMAL},
+            #{gatherSellAmount, jdbcType=DECIMAL},
+            #{preTradeAmount, jdbcType=DECIMAL},
+            #{buyTradeAmountRatio, jdbcType=DECIMAL},
+            #{sellTradeAmountRatio, jdbcType=DECIMAL},
+            #{buySellRatio, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.GatherBuySellInfo">
+        update gather_buy_sell_info
+        <set>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="gatherBuyAmount != null">
+                gather_buy_amount = #{gatherBuyAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="gatherSellAmount != null">
+                gather_sell_amount = #{gatherSellAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="preTradeAmount != null">
+                pre_trade_amount = #{preTradeAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="buyTradeAmountRatio != null">
+                buy_trade_amount_ratio = #{buyTradeAmountRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="sellTradeAmountRatio != null">
+                sell_trade_amount_ratio = #{sellTradeAmountRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="buySellRatio != null">
+                buy_sell_ratio = #{buySellRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="gatherBuyAmount != null">
+            and gather_buy_amount = #{gatherBuyAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="gatherSellAmount != null">
+            and gather_sell_amount = #{gatherSellAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="preTradeAmount != null">
+            and pre_trade_amount = #{preTradeAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="buyTradeAmountRatio != null">
+            and buy_trade_amount_ratio = #{buyTradeAmountRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="sellTradeAmountRatio != null">
+            and sell_trade_amount_ratio = #{sellTradeAmountRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="buySellRatio != null">
+            and buy_sell_ratio = #{buySellRatio, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.GatherBuySellInfoQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from gather_buy_sell_info
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.GatherBuySellInfoQuery" resultType="java.lang.Integer">
+        select count(1)
+        from gather_buy_sell_info
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

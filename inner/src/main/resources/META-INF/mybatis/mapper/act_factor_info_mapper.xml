@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.ActFactorInfoDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.ActFactorInfo">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="plank_count_day10" jdbcType="TINYINT" property="plankCountDay10"/>
+        <result column="raise_count_day10" jdbcType="TINYINT" property="raiseCountDay10"/>
+        <result column="raise_total_rate_day10" jdbcType="DECIMAL" property="raiseTotalRateDay10"/>
+        <result column="fall_count_day10" jdbcType="TINYINT" property="fallCountDay10"/>
+        <result column="fall_total_rate_day10" jdbcType="DECIMAL" property="fallTotalRateDay10"/>
+        <result column="plank_price_high_day10" jdbcType="TINYINT" property="plankPriceHighDay10"/>
+        <result column="rate_than_low_day10" jdbcType="DECIMAL" property="rateThanLowDay10"/>
+        <result column="plank_count_day20" jdbcType="TINYINT" property="plankCountDay20"/>
+        <result column="raise_count_day20" jdbcType="TINYINT" property="raiseCountDay20"/>
+        <result column="raise_total_rate_day20" jdbcType="DECIMAL" property="raiseTotalRateDay20"/>
+        <result column="fall_count_day20" jdbcType="TINYINT" property="fallCountDay20"/>
+        <result column="fall_total_rate_day20" jdbcType="DECIMAL" property="fallTotalRateDay20"/>
+        <result column="plank_price_high_day20" jdbcType="TINYINT" property="plankPriceHighDay20"/>
+        <result column="rate_than_low_day20" jdbcType="DECIMAL" property="rateThanLowDay20"/>
+        <result column="amp_total_rate_day10" jdbcType="DECIMAL" property="ampTotalRateDay10"/>
+        <result column="amp_rate_sub_sz_day10" jdbcType="DECIMAL" property="ampRateSubSzDay10"/>
+        <result column="hot_flag" jdbcType="TINYINT" property="hotFlag"/>
+        <result column="touch_plank_day3" jdbcType="TINYINT" property="touchPlankDay3"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            trade_date,
+            unique_key,
+            plank_count_day10,
+            raise_count_day10,
+            raise_total_rate_day10,
+            fall_count_day10,
+            fall_total_rate_day10,
+            plank_price_high_day10,
+            rate_than_low_day10,
+            plank_count_day20,
+            raise_count_day20,
+            raise_total_rate_day20,
+            fall_count_day20,
+            fall_total_rate_day20,
+            plank_price_high_day20,
+            rate_than_low_day20,
+            amp_total_rate_day10,
+            amp_rate_sub_sz_day10,
+            hot_flag,
+            touch_plank_day3,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from act_factor_info
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from act_factor_info
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.ActFactorInfo">
+        update act_factor_info
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="stockName != null">
+            stock_name = #{stockName, jdbcType=VARCHAR},
+        </if>
+        <if test="tradeDate != null">
+            trade_date = #{tradeDate, jdbcType=VARCHAR},
+        </if>
+        <if test="plankCountDay10 != null">
+            plank_count_day10 = #{plankCountDay10, jdbcType=TINYINT},
+        </if>
+        <if test="raiseCountDay10 != null">
+            raise_count_day10 = #{raiseCountDay10, jdbcType=TINYINT},
+        </if>
+        <if test="raiseTotalRateDay10 != null">
+            raise_total_rate_day10 = #{raiseTotalRateDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="fallCountDay10 != null">
+            fall_count_day10 = #{fallCountDay10, jdbcType=TINYINT},
+        </if>
+        <if test="fallTotalRateDay10 != null">
+            fall_total_rate_day10 = #{fallTotalRateDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="plankPriceHighDay10 != null">
+            plank_price_high_day10 = #{plankPriceHighDay10, jdbcType=TINYINT},
+        </if>
+        <if test="rateThanLowDay10 != null">
+            rate_than_low_day10 = #{rateThanLowDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="plankCountDay20 != null">
+            plank_count_day20 = #{plankCountDay20, jdbcType=TINYINT},
+        </if>
+        <if test="raiseCountDay20 != null">
+            raise_count_day20 = #{raiseCountDay20, jdbcType=TINYINT},
+        </if>
+        <if test="raiseTotalRateDay20 != null">
+            raise_total_rate_day20 = #{raiseTotalRateDay20, jdbcType=DECIMAL},
+        </if>
+        <if test="fallCountDay20 != null">
+            fall_count_day20 = #{fallCountDay20, jdbcType=TINYINT},
+        </if>
+        <if test="fallTotalRateDay20 != null">
+            fall_total_rate_day20 = #{fallTotalRateDay20, jdbcType=DECIMAL},
+        </if>
+        <if test="plankPriceHighDay20 != null">
+            plank_price_high_day20 = #{plankPriceHighDay20, jdbcType=TINYINT},
+        </if>
+        <if test="rateThanLowDay20 != null">
+            rate_than_low_day20 = #{rateThanLowDay20, jdbcType=DECIMAL},
+        </if>
+        <if test="ampTotalRateDay10 != null">
+            amp_total_rate_day10 = #{ampTotalRateDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="ampRateSubSzDay10 != null">
+            amp_rate_sub_sz_day10 = #{ampRateSubSzDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="hotFlag != null">
+            hot_flag = #{hotFlag, jdbcType=TINYINT},
+        </if>
+        <if test="touchPlankDay3 != null">
+            touch_plank_day3 = #{touchPlankDay3, jdbcType=TINYINT},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.ActFactorInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into act_factor_info (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{plankCountDay10, jdbcType=TINYINT},
+            #{raiseCountDay10, jdbcType=TINYINT},
+            #{raiseTotalRateDay10, jdbcType=DECIMAL},
+            #{fallCountDay10, jdbcType=TINYINT},
+            #{fallTotalRateDay10, jdbcType=DECIMAL},
+            #{plankPriceHighDay10, jdbcType=TINYINT},
+            #{rateThanLowDay10, jdbcType=DECIMAL},
+            #{plankCountDay20, jdbcType=TINYINT},
+            #{raiseCountDay20, jdbcType=TINYINT},
+            #{raiseTotalRateDay20, jdbcType=DECIMAL},
+            #{fallCountDay20, jdbcType=TINYINT},
+            #{fallTotalRateDay20, jdbcType=DECIMAL},
+            #{plankPriceHighDay20, jdbcType=TINYINT},
+            #{rateThanLowDay20, jdbcType=DECIMAL},
+            #{ampTotalRateDay10, jdbcType=DECIMAL},
+            #{ampRateSubSzDay10, jdbcType=DECIMAL},
+            #{hotFlag, jdbcType=TINYINT},
+            #{touchPlankDay3, jdbcType=TINYINT},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.ActFactorInfo">
+        update act_factor_info
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="plankCountDay10 != null">
+                plank_count_day10 = #{plankCountDay10, jdbcType=TINYINT},
+            </if>
+            <if test="raiseCountDay10 != null">
+                raise_count_day10 = #{raiseCountDay10, jdbcType=TINYINT},
+            </if>
+            <if test="raiseTotalRateDay10 != null">
+                raise_total_rate_day10 = #{raiseTotalRateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="fallCountDay10 != null">
+                fall_count_day10 = #{fallCountDay10, jdbcType=TINYINT},
+            </if>
+            <if test="fallTotalRateDay10 != null">
+                fall_total_rate_day10 = #{fallTotalRateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="plankPriceHighDay10 != null">
+                plank_price_high_day10 = #{plankPriceHighDay10, jdbcType=TINYINT},
+            </if>
+            <if test="rateThanLowDay10 != null">
+                rate_than_low_day10 = #{rateThanLowDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="plankCountDay20 != null">
+                plank_count_day20 = #{plankCountDay20, jdbcType=TINYINT},
+            </if>
+            <if test="raiseCountDay20 != null">
+                raise_count_day20 = #{raiseCountDay20, jdbcType=TINYINT},
+            </if>
+            <if test="raiseTotalRateDay20 != null">
+                raise_total_rate_day20 = #{raiseTotalRateDay20, jdbcType=DECIMAL},
+            </if>
+            <if test="fallCountDay20 != null">
+                fall_count_day20 = #{fallCountDay20, jdbcType=TINYINT},
+            </if>
+            <if test="fallTotalRateDay20 != null">
+                fall_total_rate_day20 = #{fallTotalRateDay20, jdbcType=DECIMAL},
+            </if>
+            <if test="plankPriceHighDay20 != null">
+                plank_price_high_day20 = #{plankPriceHighDay20, jdbcType=TINYINT},
+            </if>
+            <if test="rateThanLowDay20 != null">
+                rate_than_low_day20 = #{rateThanLowDay20, jdbcType=DECIMAL},
+            </if>
+            <if test="ampTotalRateDay10 != null">
+                amp_total_rate_day10 = #{ampTotalRateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="ampRateSubSzDay10 != null">
+                amp_rate_sub_sz_day10 = #{ampRateSubSzDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="hotFlag != null">
+                hot_flag = #{hotFlag, jdbcType=TINYINT},
+            </if>
+            <if test="touchPlankDay3 != null">
+                touch_plank_day3 = #{touchPlankDay3, jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="plankCountDay10 != null">
+            and plank_count_day10 = #{plankCountDay10, jdbcType=TINYINT}
+        </if>
+        <if test="raiseCountDay10 != null">
+            and raise_count_day10 = #{raiseCountDay10, jdbcType=TINYINT}
+        </if>
+        <if test="raiseTotalRateDay10 != null">
+            and raise_total_rate_day10 = #{raiseTotalRateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="fallCountDay10 != null">
+            and fall_count_day10 = #{fallCountDay10, jdbcType=TINYINT}
+        </if>
+        <if test="fallTotalRateDay10 != null">
+            and fall_total_rate_day10 = #{fallTotalRateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="plankPriceHighDay10 != null">
+            and plank_price_high_day10 = #{plankPriceHighDay10, jdbcType=TINYINT}
+        </if>
+        <if test="rateThanLowDay10 != null">
+            and rate_than_low_day10 = #{rateThanLowDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="plankCountDay20 != null">
+            and plank_count_day20 = #{plankCountDay20, jdbcType=TINYINT}
+        </if>
+        <if test="raiseCountDay20 != null">
+            and raise_count_day20 = #{raiseCountDay20, jdbcType=TINYINT}
+        </if>
+        <if test="raiseTotalRateDay20 != null">
+            and raise_total_rate_day20 = #{raiseTotalRateDay20, jdbcType=DECIMAL}
+        </if>
+        <if test="fallCountDay20 != null">
+            and fall_count_day20 = #{fallCountDay20, jdbcType=TINYINT}
+        </if>
+        <if test="fallTotalRateDay20 != null">
+            and fall_total_rate_day20 = #{fallTotalRateDay20, jdbcType=DECIMAL}
+        </if>
+        <if test="plankPriceHighDay20 != null">
+            and plank_price_high_day20 = #{plankPriceHighDay20, jdbcType=TINYINT}
+        </if>
+        <if test="rateThanLowDay20 != null">
+            and rate_than_low_day20 = #{rateThanLowDay20, jdbcType=DECIMAL}
+        </if>
+        <if test="ampTotalRateDay10 != null">
+            and amp_total_rate_day10 = #{ampTotalRateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="ampRateSubSzDay10 != null">
+            and amp_rate_sub_sz_day10 = #{ampRateSubSzDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="hotFlag != null">
+            and hot_flag = #{hotFlag, jdbcType=TINYINT}
+        </if>
+        <if test="touchPlankDay3 != null">
+            and touch_plank_day3 = #{touchPlankDay3, jdbcType=TINYINT}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.ActFactorInfoQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from act_factor_info
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.ActFactorInfoQuery" resultType="java.lang.Integer">
+        select count(1)
+        from act_factor_info
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

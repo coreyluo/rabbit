@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockBasicFifteenminuteAdjDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockBasicFifteenminuteAdj">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="index" jdbcType="BIGINT" property="index"/>
+        <result column="ts_code" jdbcType="VARCHAR" property="tsCode"/>
+        <result column="trade_date" jdbcType="BIGINT" property="tradeDate"/>
+        <result column="time_trade" jdbcType="BIGINT" property="timeTrade"/>
+        <result column="pre_close" jdbcType="DECIMAL" property="preClose"/>
+        <result column="val_close" jdbcType="DECIMAL" property="valClose"/>
+        <result column="val_open" jdbcType="DECIMAL" property="valOpen"/>
+        <result column="val_low" jdbcType="DECIMAL" property="valLow"/>
+        <result column="val_high" jdbcType="DECIMAL" property="valHigh"/>
+        <result column="avg_price" jdbcType="DECIMAL" property="avgPrice"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="volume" jdbcType="BIGINT" property="volume"/>
+        <result column="change_ratio" jdbcType="DECIMAL" property="changeRatio"/>
+        <result column="adj_close" jdbcType="DECIMAL" property="adjClose"/>
+        <result column="adj_open" jdbcType="DECIMAL" property="adjOpen"/>
+        <result column="adj_low" jdbcType="DECIMAL" property="adjLow"/>
+        <result column="adj_high" jdbcType="DECIMAL" property="adjHigh"/>
+        <result column="diff" jdbcType="DECIMAL" property="diff"/>
+        <result column="dea" jdbcType="DECIMAL" property="dea"/>
+        <result column="macd" jdbcType="DECIMAL" property="macd"/>
+        <result column="bias6" jdbcType="DECIMAL" property="bias6"/>
+        <result column="bias12" jdbcType="DECIMAL" property="bias12"/>
+        <result column="bias24" jdbcType="DECIMAL" property="bias24"/>
+        <result column="ma5" jdbcType="DECIMAL" property="ma5"/>
+        <result column="ma10" jdbcType="DECIMAL" property="ma10"/>
+        <result column="ma20" jdbcType="DECIMAL" property="ma20"/>
+        <result column="ma30" jdbcType="DECIMAL" property="ma30"/>
+        <result column="ma60" jdbcType="DECIMAL" property="ma60"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            index,
+            ts_code,
+            trade_date,
+            time_trade,
+            pre_close,
+            val_close,
+            val_open,
+            val_low,
+            val_high,
+            avg_price,
+            amount,
+            volume,
+            change_ratio,
+            adj_close,
+            adj_open,
+            adj_low,
+            adj_high,
+            diff,
+            dea,
+            macd,
+            bias6,
+            bias12,
+            bias24,
+            ma5,
+            ma10,
+            ma20,
+            ma30,
+            ma60
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_basic_fifteenminute_adj
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockBasicFifteenminuteAdj" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_basic_fifteenminute_adj (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{index, jdbcType=BIGINT},
+            #{tsCode, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=BIGINT},
+            #{timeTrade, jdbcType=BIGINT},
+            #{preClose, jdbcType=DECIMAL},
+            #{valClose, jdbcType=DECIMAL},
+            #{valOpen, jdbcType=DECIMAL},
+            #{valLow, jdbcType=DECIMAL},
+            #{valHigh, jdbcType=DECIMAL},
+            #{avgPrice, jdbcType=DECIMAL},
+            #{amount, jdbcType=DECIMAL},
+            #{volume, jdbcType=BIGINT},
+            #{changeRatio, jdbcType=DECIMAL},
+            #{adjClose, jdbcType=DECIMAL},
+            #{adjOpen, jdbcType=DECIMAL},
+            #{adjLow, jdbcType=DECIMAL},
+            #{adjHigh, jdbcType=DECIMAL},
+            #{diff, jdbcType=DECIMAL},
+            #{dea, jdbcType=DECIMAL},
+            #{macd, jdbcType=DECIMAL},
+            #{bias6, jdbcType=DECIMAL},
+            #{bias12, jdbcType=DECIMAL},
+            #{bias24, jdbcType=DECIMAL},
+            #{ma5, jdbcType=DECIMAL},
+            #{ma10, jdbcType=DECIMAL},
+            #{ma20, jdbcType=DECIMAL},
+            #{ma30, jdbcType=DECIMAL},
+            #{ma60, jdbcType=DECIMAL}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockBasicFifteenminuteAdj">
+        update stock_basic_fifteenminute_adj
+        <set>
+            <if test="index != null">
+                index = #{index, jdbcType=BIGINT},
+            </if>
+            <if test="tsCode != null">
+                ts_code = #{tsCode, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=BIGINT},
+            </if>
+            <if test="timeTrade != null">
+                time_trade = #{timeTrade, jdbcType=BIGINT},
+            </if>
+            <if test="preClose != null">
+                pre_close = #{preClose, jdbcType=DECIMAL},
+            </if>
+            <if test="valClose != null">
+                val_close = #{valClose, jdbcType=DECIMAL},
+            </if>
+            <if test="valOpen != null">
+                val_open = #{valOpen, jdbcType=DECIMAL},
+            </if>
+            <if test="valLow != null">
+                val_low = #{valLow, jdbcType=DECIMAL},
+            </if>
+            <if test="valHigh != null">
+                val_high = #{valHigh, jdbcType=DECIMAL},
+            </if>
+            <if test="avgPrice != null">
+                avg_price = #{avgPrice, jdbcType=DECIMAL},
+            </if>
+            <if test="amount != null">
+                amount = #{amount, jdbcType=DECIMAL},
+            </if>
+            <if test="volume != null">
+                volume = #{volume, jdbcType=BIGINT},
+            </if>
+            <if test="changeRatio != null">
+                change_ratio = #{changeRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="adjClose != null">
+                adj_close = #{adjClose, jdbcType=DECIMAL},
+            </if>
+            <if test="adjOpen != null">
+                adj_open = #{adjOpen, jdbcType=DECIMAL},
+            </if>
+            <if test="adjLow != null">
+                adj_low = #{adjLow, jdbcType=DECIMAL},
+            </if>
+            <if test="adjHigh != null">
+                adj_high = #{adjHigh, jdbcType=DECIMAL},
+            </if>
+            <if test="diff != null">
+                diff = #{diff, jdbcType=DECIMAL},
+            </if>
+            <if test="dea != null">
+                dea = #{dea, jdbcType=DECIMAL},
+            </if>
+            <if test="macd != null">
+                macd = #{macd, jdbcType=DECIMAL},
+            </if>
+            <if test="bias6 != null">
+                bias6 = #{bias6, jdbcType=DECIMAL},
+            </if>
+            <if test="bias12 != null">
+                bias12 = #{bias12, jdbcType=DECIMAL},
+            </if>
+            <if test="bias24 != null">
+                bias24 = #{bias24, jdbcType=DECIMAL},
+            </if>
+            <if test="ma5 != null">
+                ma5 = #{ma5, jdbcType=DECIMAL},
+            </if>
+            <if test="ma10 != null">
+                ma10 = #{ma10, jdbcType=DECIMAL},
+            </if>
+            <if test="ma20 != null">
+                ma20 = #{ma20, jdbcType=DECIMAL},
+            </if>
+            <if test="ma30 != null">
+                ma30 = #{ma30, jdbcType=DECIMAL},
+            </if>
+            <if test="ma60 != null">
+                ma60 = #{ma60, jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="index != null">
+            and index = #{index, jdbcType=BIGINT}
+        </if>
+        <if test="tsCode != null">
+            and ts_code = #{tsCode, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=BIGINT}
+        </if>
+        <if test="timeTrade != null">
+            and time_trade = #{timeTrade, jdbcType=BIGINT}
+        </if>
+        <if test="preClose != null">
+            and pre_close = #{preClose, jdbcType=DECIMAL}
+        </if>
+        <if test="valClose != null">
+            and val_close = #{valClose, jdbcType=DECIMAL}
+        </if>
+        <if test="valOpen != null">
+            and val_open = #{valOpen, jdbcType=DECIMAL}
+        </if>
+        <if test="valLow != null">
+            and val_low = #{valLow, jdbcType=DECIMAL}
+        </if>
+        <if test="valHigh != null">
+            and val_high = #{valHigh, jdbcType=DECIMAL}
+        </if>
+        <if test="avgPrice != null">
+            and avg_price = #{avgPrice, jdbcType=DECIMAL}
+        </if>
+        <if test="amount != null">
+            and amount = #{amount, jdbcType=DECIMAL}
+        </if>
+        <if test="volume != null">
+            and volume = #{volume, jdbcType=BIGINT}
+        </if>
+        <if test="changeRatio != null">
+            and change_ratio = #{changeRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="adjClose != null">
+            and adj_close = #{adjClose, jdbcType=DECIMAL}
+        </if>
+        <if test="adjOpen != null">
+            and adj_open = #{adjOpen, jdbcType=DECIMAL}
+        </if>
+        <if test="adjLow != null">
+            and adj_low = #{adjLow, jdbcType=DECIMAL}
+        </if>
+        <if test="adjHigh != null">
+            and adj_high = #{adjHigh, jdbcType=DECIMAL}
+        </if>
+        <if test="diff != null">
+            and diff = #{diff, jdbcType=DECIMAL}
+        </if>
+        <if test="dea != null">
+            and dea = #{dea, jdbcType=DECIMAL}
+        </if>
+        <if test="macd != null">
+            and macd = #{macd, jdbcType=DECIMAL}
+        </if>
+        <if test="bias6 != null">
+            and bias6 = #{bias6, jdbcType=DECIMAL}
+        </if>
+        <if test="bias12 != null">
+            and bias12 = #{bias12, jdbcType=DECIMAL}
+        </if>
+        <if test="bias24 != null">
+            and bias24 = #{bias24, jdbcType=DECIMAL}
+        </if>
+        <if test="ma5 != null">
+            and ma5 = #{ma5, jdbcType=DECIMAL}
+        </if>
+        <if test="ma10 != null">
+            and ma10 = #{ma10, jdbcType=DECIMAL}
+        </if>
+        <if test="ma20 != null">
+            and ma20 = #{ma20, jdbcType=DECIMAL}
+        </if>
+        <if test="ma30 != null">
+            and ma30 = #{ma30, jdbcType=DECIMAL}
+        </if>
+        <if test="ma60 != null">
+            and ma60 = #{ma60, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockBasicFifteenminuteAdjQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_basic_fifteenminute_adj
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockBasicFifteenminuteAdjQuery" resultType="java.lang.Integer">
+        select count(1)
+        from stock_basic_fifteenminute_adj
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

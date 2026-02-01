@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.HyStatisticInfoV1DAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.HyStatisticInfoV1">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="up_zz1000_time" jdbcType="INTEGER" property="upZz1000Time"/>
+        <result column="down_zz1000_time" jdbcType="INTEGER" property="downZz1000Time"/>
+        <result column="up_zz1000_total" jdbcType="DECIMAL" property="upZz1000Total"/>
+        <result column="down_zz1000_total" jdbcType="DECIMAL" property="downZz1000Total"/>
+        <result column="up_zz1000_time_day3" jdbcType="INTEGER" property="upZz1000TimeDay3"/>
+        <result column="down_zz1000_time_day3" jdbcType="INTEGER" property="downZz1000TimeDay3"/>
+        <result column="up_zz1000_total_day3" jdbcType="DECIMAL" property="upZz1000TotalDay3"/>
+        <result column="down_zz1000_total_day3" jdbcType="DECIMAL" property="downZz1000TotalDay3"/>
+        <result column="strong_period_time" jdbcType="INTEGER" property="strongPeriodTime"/>
+        <result column="strong_period_total" jdbcType="DECIMAL" property="strongPeriodTotal"/>
+        <result column="strong_period" jdbcType="VARCHAR" property="strongPeriod"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="profit" jdbcType="DECIMAL" property="profit"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            trade_date,
+            up_zz1000_time,
+            down_zz1000_time,
+            up_zz1000_total,
+            down_zz1000_total,
+            up_zz1000_time_day3,
+            down_zz1000_time_day3,
+            up_zz1000_total_day3,
+            down_zz1000_total_day3,
+            strong_period_time,
+            strong_period_total,
+            strong_period,
+            create_time,
+            update_time,
+            profit
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hy_statistic_info_v1
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.HyStatisticInfoV1" useGeneratedKeys="true" keyProperty="id">
+        insert into hy_statistic_info_v1 (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{upZz1000Time, jdbcType=INTEGER},
+            #{downZz1000Time, jdbcType=INTEGER},
+            #{upZz1000Total, jdbcType=DECIMAL},
+            #{downZz1000Total, jdbcType=DECIMAL},
+            #{upZz1000TimeDay3, jdbcType=INTEGER},
+            #{downZz1000TimeDay3, jdbcType=INTEGER},
+            #{upZz1000TotalDay3, jdbcType=DECIMAL},
+            #{downZz1000TotalDay3, jdbcType=DECIMAL},
+            #{strongPeriodTime, jdbcType=INTEGER},
+            #{strongPeriodTotal, jdbcType=DECIMAL},
+            #{strongPeriod, jdbcType=VARCHAR},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP},
+            #{profit, jdbcType=DECIMAL}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.HyStatisticInfoV1">
+        update hy_statistic_info_v1
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="upZz1000Time != null">
+                up_zz1000_time = #{upZz1000Time, jdbcType=INTEGER},
+            </if>
+            <if test="downZz1000Time != null">
+                down_zz1000_time = #{downZz1000Time, jdbcType=INTEGER},
+            </if>
+            <if test="upZz1000Total != null">
+                up_zz1000_total = #{upZz1000Total, jdbcType=DECIMAL},
+            </if>
+            <if test="downZz1000Total != null">
+                down_zz1000_total = #{downZz1000Total, jdbcType=DECIMAL},
+            </if>
+            <if test="upZz1000TimeDay3 != null">
+                up_zz1000_time_day3 = #{upZz1000TimeDay3, jdbcType=INTEGER},
+            </if>
+            <if test="downZz1000TimeDay3 != null">
+                down_zz1000_time_day3 = #{downZz1000TimeDay3, jdbcType=INTEGER},
+            </if>
+            <if test="upZz1000TotalDay3 != null">
+                up_zz1000_total_day3 = #{upZz1000TotalDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="downZz1000TotalDay3 != null">
+                down_zz1000_total_day3 = #{downZz1000TotalDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="strongPeriodTime != null">
+                strong_period_time = #{strongPeriodTime, jdbcType=INTEGER},
+            </if>
+            <if test="strongPeriodTotal != null">
+                strong_period_total = #{strongPeriodTotal, jdbcType=DECIMAL},
+            </if>
+            <if test="strongPeriod != null">
+                strong_period = #{strongPeriod, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="profit != null">
+                profit = #{profit, jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="upZz1000Time != null">
+            and up_zz1000_time = #{upZz1000Time, jdbcType=INTEGER}
+        </if>
+        <if test="downZz1000Time != null">
+            and down_zz1000_time = #{downZz1000Time, jdbcType=INTEGER}
+        </if>
+        <if test="upZz1000Total != null">
+            and up_zz1000_total = #{upZz1000Total, jdbcType=DECIMAL}
+        </if>
+        <if test="downZz1000Total != null">
+            and down_zz1000_total = #{downZz1000Total, jdbcType=DECIMAL}
+        </if>
+        <if test="upZz1000TimeDay3 != null">
+            and up_zz1000_time_day3 = #{upZz1000TimeDay3, jdbcType=INTEGER}
+        </if>
+        <if test="downZz1000TimeDay3 != null">
+            and down_zz1000_time_day3 = #{downZz1000TimeDay3, jdbcType=INTEGER}
+        </if>
+        <if test="upZz1000TotalDay3 != null">
+            and up_zz1000_total_day3 = #{upZz1000TotalDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="downZz1000TotalDay3 != null">
+            and down_zz1000_total_day3 = #{downZz1000TotalDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="strongPeriodTime != null">
+            and strong_period_time = #{strongPeriodTime, jdbcType=INTEGER}
+        </if>
+        <if test="strongPeriodTotal != null">
+            and strong_period_total = #{strongPeriodTotal, jdbcType=DECIMAL}
+        </if>
+        <if test="strongPeriod != null">
+            and strong_period = #{strongPeriod, jdbcType=VARCHAR}
+        </if>
+        <if test="profit != null">
+            and profit = #{profit, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.HyStatisticInfoV1Query" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from hy_statistic_info_v1
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.HyStatisticInfoV1Query" resultType="java.lang.Integer">
+        select count(1)
+        from hy_statistic_info_v1
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

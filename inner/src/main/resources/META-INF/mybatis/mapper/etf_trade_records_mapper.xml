@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.EtfTradeRecordsDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.EtfTradeRecords">
+        <id column="id" jdbcType="INTEGER"  property="id" />
+        <result column="strategy_id" jdbcType="INTEGER" property="strategyId"/>
+        <result column="trade_date" jdbcType="DATE" property="tradeDate"/>
+        <result column="symbol" jdbcType="VARCHAR" property="symbol"/>
+        <result column="action" jdbcType="CHAR" property="action"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="price" jdbcType="REAL" property="price"/>
+        <result column="amount" jdbcType="REAL" property="amount"/>
+        <result column="commission" jdbcType="REAL" property="commission"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            strategy_id,
+            trade_date,
+            symbol,
+            action,
+            quantity,
+            price,
+            amount,
+            commission,
+            created_at,
+            updated_at
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from etf_trade_records
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.EtfTradeRecords" useGeneratedKeys="true" keyProperty="id">
+        insert into etf_trade_records (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=INTEGER},
+            #{strategyId, jdbcType=INTEGER},
+            #{tradeDate, jdbcType=DATE},
+            #{symbol, jdbcType=VARCHAR},
+            #{action, jdbcType=CHAR},
+            #{quantity, jdbcType=INTEGER},
+            #{price, jdbcType=REAL},
+            #{amount, jdbcType=REAL},
+            #{commission, jdbcType=REAL},
+            #{createdAt, jdbcType=TIMESTAMP},
+            #{updatedAt, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.EtfTradeRecords">
+        update etf_trade_records
+        <set>
+            <if test="strategyId != null">
+                strategy_id = #{strategyId, jdbcType=INTEGER},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=DATE},
+            </if>
+            <if test="symbol != null">
+                symbol = #{symbol, jdbcType=VARCHAR},
+            </if>
+            <if test="action != null">
+                action = #{action, jdbcType=CHAR},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity, jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                price = #{price, jdbcType=REAL},
+            </if>
+            <if test="amount != null">
+                amount = #{amount, jdbcType=REAL},
+            </if>
+            <if test="commission != null">
+                commission = #{commission, jdbcType=REAL},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="strategyId != null">
+            and strategy_id = #{strategyId, jdbcType=INTEGER}
+        </if>
+        <if test="symbol != null">
+            and symbol = #{symbol, jdbcType=VARCHAR}
+        </if>
+        <if test="action != null">
+            and action = #{action, jdbcType=CHAR}
+        </if>
+        <if test="quantity != null">
+            and quantity = #{quantity, jdbcType=INTEGER}
+        </if>
+        <if test="price != null">
+            and price = #{price, jdbcType=REAL}
+        </if>
+        <if test="amount != null">
+            and amount = #{amount, jdbcType=REAL}
+        </if>
+        <if test="commission != null">
+            and commission = #{commission, jdbcType=REAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="tradeDateFrom != null">
+            <![CDATA[
+            and trade_date >= #{tradeDateFrom, jdbcType=DATE}
+            ]]>
+        </if>
+        <if test="tradeDateTo != null">
+            <![CDATA[
+            and trade_date <= #{tradeDateTo, jdbcType=DATE}
+            ]]>
+        </if>
+        <if test="createdAtFrom != null">
+            <![CDATA[
+            and created_at >= #{createdAtFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createdAtTo != null">
+            <![CDATA[
+            and created_at <= #{createdAtTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updatedAtFrom != null">
+            <![CDATA[
+            and updated_at >= #{updatedAtFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updatedAtTo != null">
+            <![CDATA[
+            and updated_at <= #{updatedAtTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.EtfTradeRecordsQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from etf_trade_records
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.EtfTradeRecordsQuery" resultType="java.lang.Integer">
+        select count(1)
+        from etf_trade_records
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.SameOrderData100wDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.SameOrderData100w">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="total_money" jdbcType="DECIMAL" property="totalMoney"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="time_trade" jdbcType="VARCHAR" property="timeTrade"/>
+        <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
+        <result column="order_volume" jdbcType="DECIMAL" property="orderVolume"/>
+        <result column="same_order_times" jdbcType="BIGINT" property="sameOrderTimes"/>
+        <result column="order_index" jdbcType="BIGINT" property="orderIndex"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+            id,
+            stock_code,
+            trade_date,
+            total_money,
+            money,
+            unique_key,
+            time_trade,
+            order_price,
+            order_volume,
+            same_order_times,
+            order_index
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from same_order_data_100w
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from same_order_data_100w
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.SameOrderData100w">
+        update same_order_data_100w
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="tradeDate != null">
+            trade_date = #{tradeDate, jdbcType=VARCHAR},
+        </if>
+        <if test="totalMoney != null">
+            total_money = #{totalMoney, jdbcType=DECIMAL},
+        </if>
+        <if test="money != null">
+            money = #{money, jdbcType=DECIMAL},
+        </if>
+        <if test="timeTrade != null">
+            time_trade = #{timeTrade, jdbcType=VARCHAR},
+        </if>
+        <if test="orderPrice != null">
+            order_price = #{orderPrice, jdbcType=DECIMAL},
+        </if>
+        <if test="orderVolume != null">
+            order_volume = #{orderVolume, jdbcType=DECIMAL},
+        </if>
+        <if test="sameOrderTimes != null">
+            same_order_times = #{sameOrderTimes, jdbcType=BIGINT},
+        </if>
+        <if test="orderIndex != null">
+            order_index = #{orderIndex, jdbcType=BIGINT},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.SameOrderData100w" useGeneratedKeys="true" keyProperty="id">
+        insert into same_order_data_100w (<include refid="Base_Column_List" />)
+        values(
+            #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{totalMoney, jdbcType=DECIMAL},
+            #{money, jdbcType=DECIMAL},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{timeTrade, jdbcType=VARCHAR},
+            #{orderPrice, jdbcType=DECIMAL},
+            #{orderVolume, jdbcType=DECIMAL},
+            #{sameOrderTimes, jdbcType=BIGINT},
+            #{orderIndex, jdbcType=BIGINT}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.SameOrderData100w">
+        update same_order_data_100w
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="totalMoney != null">
+                total_money = #{totalMoney, jdbcType=DECIMAL},
+            </if>
+            <if test="money != null">
+                money = #{money, jdbcType=DECIMAL},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="timeTrade != null">
+                time_trade = #{timeTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice, jdbcType=DECIMAL},
+            </if>
+            <if test="orderVolume != null">
+                order_volume = #{orderVolume, jdbcType=DECIMAL},
+            </if>
+            <if test="sameOrderTimes != null">
+                same_order_times = #{sameOrderTimes, jdbcType=BIGINT},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex, jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="totalMoney != null">
+            and total_money = #{totalMoney, jdbcType=DECIMAL}
+        </if>
+        <if test="money != null">
+            and money = #{money, jdbcType=DECIMAL}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="timeTrade != null">
+            and time_trade = #{timeTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="orderPrice != null">
+            and order_price = #{orderPrice, jdbcType=DECIMAL}
+        </if>
+        <if test="orderVolume != null">
+            and order_volume = #{orderVolume, jdbcType=DECIMAL}
+        </if>
+        <if test="sameOrderTimes != null">
+            and same_order_times = #{sameOrderTimes, jdbcType=BIGINT}
+        </if>
+        <if test="orderIndex != null">
+            and order_index = #{orderIndex, jdbcType=BIGINT}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.SameOrderData100wQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from same_order_data_100w
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.SameOrderData100wQuery" resultType="java.lang.Integer">
+        select count(1)
+        from same_order_data_100w
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

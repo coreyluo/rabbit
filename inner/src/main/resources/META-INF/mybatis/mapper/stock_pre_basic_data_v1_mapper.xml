@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockPreBasicDataV1DAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockPreBasicDataV1">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="open_rate" jdbcType="DECIMAL" property="openRate"/>
+        <result column="gather_amount" jdbcType="DECIMAL" property="gatherAmount"/>
+        <result column="gather_turn_rate" jdbcType="DECIMAL" property="gatherTurnRate"/>
+        <result column="plank_times_day10" jdbcType="INTEGER" property="plankTimesDay10"/>
+        <result column="break_times_day10" jdbcType="INTEGER" property="breakTimesDay10"/>
+        <result column="seal_times_day10" jdbcType="INTEGER" property="sealTimesDay10"/>
+        <result column="continue_times" jdbcType="INTEGER" property="continueTimes"/>
+        <result column="gem_flag" jdbcType="INTEGER" property="gemFlag"/>
+        <result column="trade_amount" jdbcType="DECIMAL" property="tradeAmount"/>
+        <result column="turn_rate" jdbcType="DECIMAL" property="turnRate"/>
+        <result column="rate_day3" jdbcType="DECIMAL" property="rateDay3"/>
+        <result column="rate_day5" jdbcType="DECIMAL" property="rateDay5"/>
+        <result column="rate_day10" jdbcType="DECIMAL" property="rateDay10"/>
+        <result column="rate_day20" jdbcType="DECIMAL" property="rateDay20"/>
+        <result column="end_plank_flag" jdbcType="INTEGER" property="endPlankFlag"/>
+        <result column="end_rate" jdbcType="DECIMAL" property="endRate"/>
+        <result column="entity_rate" jdbcType="DECIMAL" property="entityRate"/>
+        <result column="before_end_rate" jdbcType="DECIMAL" property="beforeEndRate"/>
+        <result column="before_entity_rate" jdbcType="DECIMAL" property="beforeEntityRate"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="profit" jdbcType="DECIMAL" property="profit"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            trade_date,
+            open_rate,
+            gather_amount,
+            gather_turn_rate,
+            plank_times_day10,
+            break_times_day10,
+            seal_times_day10,
+            continue_times,
+            gem_flag,
+            trade_amount,
+            turn_rate,
+            rate_day3,
+            rate_day5,
+            rate_day10,
+            rate_day20,
+            end_plank_flag,
+            end_rate,
+            entity_rate,
+            before_end_rate,
+            before_entity_rate,
+            create_time,
+            update_time,
+            profit
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_pre_basic_data_v1
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockPreBasicDataV1" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_pre_basic_data_v1 (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{openRate, jdbcType=DECIMAL},
+            #{gatherAmount, jdbcType=DECIMAL},
+            #{gatherTurnRate, jdbcType=DECIMAL},
+            #{plankTimesDay10, jdbcType=INTEGER},
+            #{breakTimesDay10, jdbcType=INTEGER},
+            #{sealTimesDay10, jdbcType=INTEGER},
+            #{continueTimes, jdbcType=INTEGER},
+            #{gemFlag, jdbcType=INTEGER},
+            #{tradeAmount, jdbcType=DECIMAL},
+            #{turnRate, jdbcType=DECIMAL},
+            #{rateDay3, jdbcType=DECIMAL},
+            #{rateDay5, jdbcType=DECIMAL},
+            #{rateDay10, jdbcType=DECIMAL},
+            #{rateDay20, jdbcType=DECIMAL},
+            #{endPlankFlag, jdbcType=INTEGER},
+            #{endRate, jdbcType=DECIMAL},
+            #{entityRate, jdbcType=DECIMAL},
+            #{beforeEndRate, jdbcType=DECIMAL},
+            #{beforeEntityRate, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP},
+            #{profit, jdbcType=DECIMAL}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockPreBasicDataV1">
+        update stock_pre_basic_data_v1
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="openRate != null">
+                open_rate = #{openRate, jdbcType=DECIMAL},
+            </if>
+            <if test="gatherAmount != null">
+                gather_amount = #{gatherAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="gatherTurnRate != null">
+                gather_turn_rate = #{gatherTurnRate, jdbcType=DECIMAL},
+            </if>
+            <if test="plankTimesDay10 != null">
+                plank_times_day10 = #{plankTimesDay10, jdbcType=INTEGER},
+            </if>
+            <if test="breakTimesDay10 != null">
+                break_times_day10 = #{breakTimesDay10, jdbcType=INTEGER},
+            </if>
+            <if test="sealTimesDay10 != null">
+                seal_times_day10 = #{sealTimesDay10, jdbcType=INTEGER},
+            </if>
+            <if test="continueTimes != null">
+                continue_times = #{continueTimes, jdbcType=INTEGER},
+            </if>
+            <if test="gemFlag != null">
+                gem_flag = #{gemFlag, jdbcType=INTEGER},
+            </if>
+            <if test="tradeAmount != null">
+                trade_amount = #{tradeAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="turnRate != null">
+                turn_rate = #{turnRate, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay3 != null">
+                rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay5 != null">
+                rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay10 != null">
+                rate_day10 = #{rateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay20 != null">
+                rate_day20 = #{rateDay20, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankFlag != null">
+                end_plank_flag = #{endPlankFlag, jdbcType=INTEGER},
+            </if>
+            <if test="endRate != null">
+                end_rate = #{endRate, jdbcType=DECIMAL},
+            </if>
+            <if test="entityRate != null">
+                entity_rate = #{entityRate, jdbcType=DECIMAL},
+            </if>
+            <if test="beforeEndRate != null">
+                before_end_rate = #{beforeEndRate, jdbcType=DECIMAL},
+            </if>
+            <if test="beforeEntityRate != null">
+                before_entity_rate = #{beforeEntityRate, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="profit != null">
+                profit = #{profit, jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="openRate != null">
+            and open_rate = #{openRate, jdbcType=DECIMAL}
+        </if>
+        <if test="gatherAmount != null">
+            and gather_amount = #{gatherAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="gatherTurnRate != null">
+            and gather_turn_rate = #{gatherTurnRate, jdbcType=DECIMAL}
+        </if>
+        <if test="plankTimesDay10 != null">
+            and plank_times_day10 = #{plankTimesDay10, jdbcType=INTEGER}
+        </if>
+        <if test="breakTimesDay10 != null">
+            and break_times_day10 = #{breakTimesDay10, jdbcType=INTEGER}
+        </if>
+        <if test="sealTimesDay10 != null">
+            and seal_times_day10 = #{sealTimesDay10, jdbcType=INTEGER}
+        </if>
+        <if test="continueTimes != null">
+            and continue_times = #{continueTimes, jdbcType=INTEGER}
+        </if>
+        <if test="gemFlag != null">
+            and gem_flag = #{gemFlag, jdbcType=INTEGER}
+        </if>
+        <if test="tradeAmount != null">
+            and trade_amount = #{tradeAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="turnRate != null">
+            and turn_rate = #{turnRate, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay3 != null">
+            and rate_day3 = #{rateDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay5 != null">
+            and rate_day5 = #{rateDay5, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay10 != null">
+            and rate_day10 = #{rateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay20 != null">
+            and rate_day20 = #{rateDay20, jdbcType=DECIMAL}
+        </if>
+        <if test="endPlankFlag != null">
+            and end_plank_flag = #{endPlankFlag, jdbcType=INTEGER}
+        </if>
+        <if test="endRate != null">
+            and end_rate = #{endRate, jdbcType=DECIMAL}
+        </if>
+        <if test="entityRate != null">
+            and entity_rate = #{entityRate, jdbcType=DECIMAL}
+        </if>
+        <if test="beforeEndRate != null">
+            and before_end_rate = #{beforeEndRate, jdbcType=DECIMAL}
+        </if>
+        <if test="beforeEntityRate != null">
+            and before_entity_rate = #{beforeEntityRate, jdbcType=DECIMAL}
+        </if>
+        <if test="profit != null">
+            and profit = #{profit, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockPreBasicDataV1Query" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_pre_basic_data_v1
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockPreBasicDataV1Query" resultType="java.lang.Integer">
+        select count(1)
+        from stock_pre_basic_data_v1
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

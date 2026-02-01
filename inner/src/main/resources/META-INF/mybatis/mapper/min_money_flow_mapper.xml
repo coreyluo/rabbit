@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.MinMoneyFlowDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.MinMoneyFlow">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="kbar_time" jdbcType="VARCHAR" property="kbarTime"/>
+        <result column="kbar_type" jdbcType="INTEGER" property="kbarType"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="active_super_buy_amt" jdbcType="DECIMAL" property="activeSuperBuyAmt"/>
+        <result column="active_big_buy_amt" jdbcType="DECIMAL" property="activeBigBuyAmt"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            kbar_date,
+            kbar_time,
+            kbar_type,
+            unique_key,
+            active_super_buy_amt,
+            active_big_buy_amt,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from min_money_flow
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from min_money_flow
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.MinMoneyFlow">
+        update min_money_flow
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="stockName != null">
+            stock_name = #{stockName, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarDate != null">
+            kbar_date = #{kbarDate, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarTime != null">
+            kbar_time = #{kbarTime, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarType != null">
+            kbar_type = #{kbarType, jdbcType=INTEGER},
+        </if>
+        <if test="activeSuperBuyAmt != null">
+            active_super_buy_amt = #{activeSuperBuyAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBigBuyAmt != null">
+            active_big_buy_amt = #{activeBigBuyAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.MinMoneyFlow" useGeneratedKeys="true" keyProperty="id">
+        insert into min_money_flow (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{kbarTime, jdbcType=VARCHAR},
+            #{kbarType, jdbcType=INTEGER},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{activeSuperBuyAmt, jdbcType=DECIMAL},
+            #{activeBigBuyAmt, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.MinMoneyFlow">
+        update min_money_flow
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarTime != null">
+                kbar_time = #{kbarTime, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarType != null">
+                kbar_type = #{kbarType, jdbcType=INTEGER},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="activeSuperBuyAmt != null">
+                active_super_buy_amt = #{activeSuperBuyAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBigBuyAmt != null">
+                active_big_buy_amt = #{activeBigBuyAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarTime != null">
+            and kbar_time = #{kbarTime, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarType != null">
+            and kbar_type = #{kbarType, jdbcType=INTEGER}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="activeSuperBuyAmt != null">
+            and active_super_buy_amt = #{activeSuperBuyAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBigBuyAmt != null">
+            and active_big_buy_amt = #{activeBigBuyAmt, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.MinMoneyFlowQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from min_money_flow
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.MinMoneyFlowQuery" resultType="java.lang.Integer">
+        select count(1)
+        from min_money_flow
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

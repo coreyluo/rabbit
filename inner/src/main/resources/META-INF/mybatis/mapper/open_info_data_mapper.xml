@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.OpenInfoDataDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.OpenInfoData">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="date_trade" jdbcType="VARCHAR" property="dateTrade"/>
+        <result column="time_trade" jdbcType="VARCHAR" property="timeTrade"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="total_volume" jdbcType="DECIMAL" property="totalVolume"/>
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount"/>
+        <result column="total_ask_qty" jdbcType="DECIMAL" property="totalAskQty"/>
+        <result column="total_bid_qty" jdbcType="DECIMAL" property="totalBidQty"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            date_trade,
+            time_trade,
+            unique_key,
+            total_volume,
+            total_amount,
+            total_ask_qty,
+            total_bid_qty,
+            create_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from open_info_data
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from open_info_data
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.OpenInfoData">
+        update open_info_data
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="dateTrade != null">
+            date_trade = #{dateTrade, jdbcType=VARCHAR},
+        </if>
+        <if test="timeTrade != null">
+            time_trade = #{timeTrade, jdbcType=VARCHAR},
+        </if>
+        <if test="totalVolume != null">
+            total_volume = #{totalVolume, jdbcType=DECIMAL},
+        </if>
+        <if test="totalAmount != null">
+            total_amount = #{totalAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="totalAskQty != null">
+            total_ask_qty = #{totalAskQty, jdbcType=DECIMAL},
+        </if>
+        <if test="totalBidQty != null">
+            total_bid_qty = #{totalBidQty, jdbcType=DECIMAL},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.OpenInfoData" useGeneratedKeys="true" keyProperty="id">
+        insert into open_info_data (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{dateTrade, jdbcType=VARCHAR},
+            #{timeTrade, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{totalVolume, jdbcType=DECIMAL},
+            #{totalAmount, jdbcType=DECIMAL},
+            #{totalAskQty, jdbcType=DECIMAL},
+            #{totalBidQty, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.OpenInfoData">
+        update open_info_data
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="dateTrade != null">
+                date_trade = #{dateTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="timeTrade != null">
+                time_trade = #{timeTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="totalVolume != null">
+                total_volume = #{totalVolume, jdbcType=DECIMAL},
+            </if>
+            <if test="totalAmount != null">
+                total_amount = #{totalAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="totalAskQty != null">
+                total_ask_qty = #{totalAskQty, jdbcType=DECIMAL},
+            </if>
+            <if test="totalBidQty != null">
+                total_bid_qty = #{totalBidQty, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="dateTrade != null">
+            and date_trade = #{dateTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="timeTrade != null">
+            and time_trade = #{timeTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="totalVolume != null">
+            and total_volume = #{totalVolume, jdbcType=DECIMAL}
+        </if>
+        <if test="totalAmount != null">
+            and total_amount = #{totalAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="totalAskQty != null">
+            and total_ask_qty = #{totalAskQty, jdbcType=DECIMAL}
+        </if>
+        <if test="totalBidQty != null">
+            and total_bid_qty = #{totalBidQty, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.OpenInfoDataQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from open_info_data
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.OpenInfoDataQuery" resultType="java.lang.Integer">
+        select count(1)
+        from open_info_data
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

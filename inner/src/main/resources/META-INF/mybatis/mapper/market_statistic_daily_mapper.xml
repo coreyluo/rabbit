@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.MarketStatisticDailyDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.MarketStatisticDaily">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="end_plank_one" jdbcType="BIGINT" property="endPlankOne"/>
+        <result column="end_break_one" jdbcType="BIGINT" property="endBreakOne"/>
+        <result column="end_plank_one_ratio" jdbcType="DECIMAL" property="endPlankOneRatio"/>
+        <result column="end_plank_high" jdbcType="BIGINT" property="endPlankHigh"/>
+        <result column="end_break_high" jdbcType="BIGINT" property="endBreakHigh"/>
+        <result column="end_plank_high_ratio" jdbcType="DECIMAL" property="endPlankHighRatio"/>
+        <result column="end_plank_all" jdbcType="BIGINT" property="endPlankAll"/>
+        <result column="end_break_all" jdbcType="BIGINT" property="endBreakAll"/>
+        <result column="end_plank_all_ratio" jdbcType="DECIMAL" property="endPlankAllRatio"/>
+        <result column="end_plank_one_amount" jdbcType="DECIMAL" property="endPlankOneAmount"/>
+        <result column="end_break_one_amount" jdbcType="DECIMAL" property="endBreakOneAmount"/>
+        <result column="end_plank_high_amount" jdbcType="DECIMAL" property="endPlankHighAmount"/>
+        <result column="end_break_high_amount" jdbcType="DECIMAL" property="endBreakHighAmount"/>
+        <result column="end_plank_all_amount" jdbcType="DECIMAL" property="endPlankAllAmount"/>
+        <result column="end_break_all_amount" jdbcType="DECIMAL" property="endBreakAllAmount"/>
+        <result column="open_sudden_all" jdbcType="BIGINT" property="openSuddenAll"/>
+        <result column="end_sudden_all" jdbcType="BIGINT" property="endSuddenAll"/>
+        <result column="open_plank_all" jdbcType="BIGINT" property="openPlankAll"/>
+        <result column="touch_sudden_all" jdbcType="BIGINT" property="touchSuddenAll"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            kbar_date,
+            end_plank_one,
+            end_break_one,
+            end_plank_one_ratio,
+            end_plank_high,
+            end_break_high,
+            end_plank_high_ratio,
+            end_plank_all,
+            end_break_all,
+            end_plank_all_ratio,
+          end_plank_one_amount,
+          end_break_one_amount,
+          end_plank_high_amount,
+          end_break_high_amount,
+          end_plank_all_amount,
+          end_break_all_amount,
+          open_sudden_all,
+          end_sudden_all,
+          open_plank_all,
+          touch_sudden_all,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from market_statistic_daily
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByKbarDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from market_statistic_daily
+        where kbar_date = #{kbarDate} limit 1
+    </select>
+
+    <update id="updateByKbarDate" parameterType="com.bazinga.replay.model.MarketStatisticDaily">
+        update market_statistic_daily
+        <set>
+        <if test="endPlankOne != null">
+            end_plank_one = #{endPlankOne, jdbcType=BIGINT},
+        </if>
+        <if test="endBreakOne != null">
+            end_break_one = #{endBreakOne, jdbcType=BIGINT},
+        </if>
+        <if test="endPlankOneRatio != null">
+            end_plank_one_ratio = #{endPlankOneRatio, jdbcType=DECIMAL},
+        </if>
+        <if test="endPlankHigh != null">
+            end_plank_high = #{endPlankHigh, jdbcType=BIGINT},
+        </if>
+        <if test="endBreakHigh != null">
+            end_break_high = #{endBreakHigh, jdbcType=BIGINT},
+        </if>
+        <if test="endPlankHighRatio != null">
+            end_plank_high_ratio = #{endPlankHighRatio, jdbcType=DECIMAL},
+        </if>
+        <if test="endPlankAll != null">
+            end_plank_all = #{endPlankAll, jdbcType=BIGINT},
+        </if>
+        <if test="endBreakAll != null">
+            end_break_all = #{endBreakAll, jdbcType=BIGINT},
+        </if>
+        <if test="endPlankAllRatio != null">
+            end_plank_all_ratio = #{endPlankAllRatio, jdbcType=DECIMAL},
+        </if>
+            <if test="endPlankOneAmount != null">
+                end_plank_one_amount = #{endPlankOneAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakOneAmount != null">
+                end_break_one_amount = #{endBreakOneAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankHighAmount != null">
+                end_plank_high_amount = #{endPlankHighAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakHighAmount != null">
+                end_break_high_amount = #{endBreakHighAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankAllAmount != null">
+                end_plank_all_amount = #{endPlankAllAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakAllAmount != null">
+                end_break_all_amount = #{endBreakAllAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="openSuddenAll != null">
+                open_sudden_all = #{openSuddenAll, jdbcType=DECIMAL},
+            </if>
+            <if test="endSuddenAll != null">
+                end_sudden_all = #{endSuddenAll, jdbcType=DECIMAL},
+            </if>
+            <if test="openPlankAll != null">
+                open_plank_all = #{openPlankAll, jdbcType=DECIMAL},
+            </if>
+            <if test="touchSuddenAll != null">
+                touch_sudden_all = #{touchSuddenAll, jdbcType=DECIMAL},
+            </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where kbar_date = #{kbarDate} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.MarketStatisticDaily" useGeneratedKeys="true" keyProperty="id">
+        insert into market_statistic_daily (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{endPlankOne, jdbcType=BIGINT},
+            #{endBreakOne, jdbcType=BIGINT},
+            #{endPlankOneRatio, jdbcType=DECIMAL},
+            #{endPlankHigh, jdbcType=BIGINT},
+            #{endBreakHigh, jdbcType=BIGINT},
+            #{endPlankHighRatio, jdbcType=DECIMAL},
+            #{endPlankAll, jdbcType=BIGINT},
+            #{endBreakAll, jdbcType=BIGINT},
+            #{endPlankAllRatio, jdbcType=DECIMAL},
+        #{endPlankOneAmount, jdbcType=DECIMAL},
+        #{endBreakOneAmount, jdbcType=DECIMAL},
+        #{endPlankHighAmount, jdbcType=DECIMAL},
+        #{endBreakHighAmount, jdbcType=DECIMAL},
+        #{endPlankAllAmount, jdbcType=DECIMAL},
+        #{endBreakAllAmount, jdbcType=DECIMAL},
+        #{openSuddenAll, jdbcType=DECIMAL},
+        #{endSuddenAll, jdbcType=DECIMAL},
+        #{openPlankAll, jdbcType=DECIMAL},
+        #{touchSuddenAll, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.MarketStatisticDaily">
+        update market_statistic_daily
+        <set>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="endPlankOne != null">
+                end_plank_one = #{endPlankOne, jdbcType=BIGINT},
+            </if>
+            <if test="endBreakOne != null">
+                end_break_one = #{endBreakOne, jdbcType=BIGINT},
+            </if>
+            <if test="endPlankOneRatio != null">
+                end_plank_one_ratio = #{endPlankOneRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankHigh != null">
+                end_plank_high = #{endPlankHigh, jdbcType=BIGINT},
+            </if>
+            <if test="endBreakHigh != null">
+                end_break_high = #{endBreakHigh, jdbcType=BIGINT},
+            </if>
+            <if test="endPlankHighRatio != null">
+                end_plank_high_ratio = #{endPlankHighRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankAll != null">
+                end_plank_all = #{endPlankAll, jdbcType=BIGINT},
+            </if>
+            <if test="endBreakAll != null">
+                end_break_all = #{endBreakAll, jdbcType=BIGINT},
+            </if>
+            <if test="endPlankAllRatio != null">
+                end_plank_all_ratio = #{endPlankAllRatio, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankOneAmount != null">
+                end_plank_one_amount = #{endPlankOneAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakOneAmount != null">
+                end_break_one_amount = #{endBreakOneAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankHighAmount != null">
+                end_plank_high_amount = #{endPlankHighAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakHighAmount != null">
+                end_break_high_amount = #{endBreakHighAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endPlankAllAmount != null">
+                end_plank_all_amount = #{endPlankAllAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="endBreakAllAmount != null">
+                end_break_all_amount = #{endBreakAllAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="openSuddenAll != null">
+                open_sudden_all = #{openSuddenAll, jdbcType=DECIMAL},
+            </if>
+            <if test="endSuddenAll != null">
+                end_sudden_all = #{endSuddenAll, jdbcType=DECIMAL},
+            </if>
+            <if test="openPlankAll != null">
+                open_plank_all = #{openPlankAll, jdbcType=DECIMAL},
+            </if>
+            <if test="touchSuddenAll != null">
+                touch_sudden_all = #{touchSuddenAll, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="endPlankOne != null">
+            and end_plank_one = #{endPlankOne, jdbcType=BIGINT}
+        </if>
+        <if test="endBreakOne != null">
+            and end_break_one = #{endBreakOne, jdbcType=BIGINT}
+        </if>
+        <if test="endPlankOneRatio != null">
+            and end_plank_one_ratio = #{endPlankOneRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="endPlankHigh != null">
+            and end_plank_high = #{endPlankHigh, jdbcType=BIGINT}
+        </if>
+        <if test="endBreakHigh != null">
+            and end_break_high = #{endBreakHigh, jdbcType=BIGINT}
+        </if>
+        <if test="endPlankHighRatio != null">
+            and end_plank_high_ratio = #{endPlankHighRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="endPlankAll != null">
+            and end_plank_all = #{endPlankAll, jdbcType=BIGINT}
+        </if>
+        <if test="endBreakAll != null">
+            and end_break_all = #{endBreakAll, jdbcType=BIGINT}
+        </if>
+        <if test="endPlankAllRatio != null">
+            and end_plank_all_ratio = #{endPlankAllRatio, jdbcType=DECIMAL}
+        </if>
+        <if test="endPlankOneAmount != null">
+            end_plank_one_amount = #{endPlankOneAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="endBreakOneAmount != null">
+            and end_break_one_amount = #{endBreakOneAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="endPlankHighAmount != null">
+            and end_plank_high_amount = #{endPlankHighAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="endBreakHighAmount != null">
+            and end_break_high_amount = #{endBreakHighAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="endPlankAllAmount != null">
+            and end_plank_all_amount = #{endPlankAllAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="endBreakAllAmount != null">
+            and end_break_all_amount = #{endBreakAllAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="openSuddenAll != null">
+            and open_sudden_all = #{openSuddenAll, jdbcType=DECIMAL},
+        </if>
+        <if test="endSuddenAll != null">
+            and end_sudden_all = #{endSuddenAll, jdbcType=DECIMAL},
+        </if>
+        <if test="openPlankAll != null">
+            and open_plank_all = #{openPlankAll, jdbcType=DECIMAL},
+        </if>
+        <if test="touchSuddenAll != null">
+            touch_sudden_all = #{touchSuddenAll, jdbcType=DECIMAL},
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.MarketStatisticDailyQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from market_statistic_daily
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.MarketStatisticDailyQuery" resultType="java.lang.Integer">
+        select count(1)
+        from market_statistic_daily
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

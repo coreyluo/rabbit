@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockBeforeRateDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockBeforeRate">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="rate_day3" jdbcType="DECIMAL" property="rateDay3"/>
+        <result column="rate_day5" jdbcType="DECIMAL" property="rateDay5"/>
+        <result column="rate_day10" jdbcType="DECIMAL" property="rateDay10"/>
+        <result column="rate_day20" jdbcType="DECIMAL" property="rateDay20"/>
+        <result column="rate_day30" jdbcType="DECIMAL" property="rateDay30"/>
+        <result column="rate_day40" jdbcType="DECIMAL" property="rateDay40"/>
+        <result column="rate_day60" jdbcType="DECIMAL" property="rateDay60"/>
+        <result column="act_rate_day3" jdbcType="DECIMAL" property="actRateDay3"/>
+        <result column="act_rate_day5" jdbcType="DECIMAL" property="actRateDay5"/>
+        <result column="act_rate_day10" jdbcType="DECIMAL" property="actRateDay10"/>
+        <result column="act_rate_day15" jdbcType="DECIMAL" property="actRateDay15"/>
+        <result column="act_rate_day30" jdbcType="DECIMAL" property="actRateDay30"/>
+        <result column="plank_times220" jdbcType="TINYINT" property="plankTimes220"/>
+        <result column="strong_than1000" jdbcType="DECIMAL" property="strongThan1000"/>
+        <result column="strong_than10003" jdbcType="DECIMAL" property="strongThan10003"/>
+        <result column="strong_than10005" jdbcType="DECIMAL" property="strongThan10005"/>
+        <result column="after_day_plank_bias24" jdbcType="DECIMAL" property="afterDayPlankBias24"/>
+        <result column="pre_amount" jdbcType="DECIMAL" property="preAmount"/>
+        <result column="pre_five_avg_amount" jdbcType="DECIMAL" property="preFiveAvgAmount"/>
+        <result column="pre_is_high_amt_day5" jdbcType="TINYINT" property="preIsHighAmtDay5"/>
+        <result column="touch_plank_time_day10" jdbcType="TINYINT" property="touchPlankTimeDay10"/>
+        <result column="high_amt_day5" jdbcType="DECIMAL" property="highAmtDay5"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            kbar_date,
+            unique_key,
+            rate_day3,
+            rate_day5,
+            rate_day10,
+            rate_day20,
+            rate_day30,
+            rate_day40,
+            rate_day60,
+            act_rate_day3,
+            act_rate_day5,
+            act_rate_day10,
+            act_rate_day15,
+            act_rate_day30,
+            plank_times220,
+            strong_than1000,
+            strong_than10003,
+            strong_than10005,
+            after_day_plank_bias24,
+            pre_amount,
+            pre_five_avg_amount,
+          pre_is_high_amt_day5,
+          touch_plank_time_day10,
+          high_amt_day5,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_before_rate
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_before_rate
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.StockBeforeRate">
+        update stock_before_rate
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="stockName != null">
+            stock_name = #{stockName, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarDate != null">
+            kbar_date = #{kbarDate, jdbcType=VARCHAR},
+        </if>
+        <if test="rateDay3 != null">
+            rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay5 != null">
+            rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay10 != null">
+            rate_day10 = #{rateDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay20 != null">
+            rate_day20 = #{rateDay20, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay30 != null">
+            rate_day30 = #{rateDay30, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay40 != null">
+            rate_day40 = #{rateDay40, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay60 != null">
+            rate_day60 = #{rateDay60, jdbcType=DECIMAL},
+        </if>
+        <if test="actRateDay3 != null">
+            act_rate_day3 = #{actRateDay3, jdbcType=DECIMAL},
+        </if>
+        <if test="actRateDay5 != null">
+            act_rate_day5 = #{actRateDay5, jdbcType=DECIMAL},
+        </if>
+        <if test="actRateDay10 != null">
+            act_rate_day10 = #{actRateDay10, jdbcType=DECIMAL},
+        </if>
+        <if test="actRateDay15 != null">
+            act_rate_day15 = #{actRateDay15, jdbcType=DECIMAL},
+        </if>
+        <if test="actRateDay30 != null">
+            act_rate_day30 = #{actRateDay30, jdbcType=DECIMAL},
+        </if>
+        <if test="plankTimes220 != null">
+            plank_times220 = #{plankTimes220, jdbcType=TINYINT},
+        </if>
+        <if test="strongThan1000 != null">
+            strong_than1000 = #{strongThan1000, jdbcType=DECIMAL},
+        </if>
+        <if test="strongThan10003 != null">
+            strong_than10003 = #{strongThan10003, jdbcType=DECIMAL},
+        </if>
+        <if test="strongThan10005 != null">
+            strong_than10005 = #{strongThan10005, jdbcType=DECIMAL},
+        </if>
+        <if test="afterDayPlankBias24 != null">
+            after_day_plank_bias24 = #{afterDayPlankBias24, jdbcType=DECIMAL},
+        </if>
+        <if test="preAmount != null">
+            pre_amount = #{preAmount, jdbcType=DECIMAL},
+        </if>
+        <if test="preFiveAvgAmount != null">
+            pre_five_avg_amount = #{preFiveAvgAmount, jdbcType=DECIMAL},
+        </if>
+            <if test="preIsHighAmtDay5 != null">
+                pre_is_high_amt_day5 = #{preIsHighAmtDay5, jdbcType=TINYINT},
+            </if>
+            <if test="touchPlankTimeDay10 != null">
+                touch_plank_time_day10 = #{touchPlankTimeDay10, jdbcType=TINYINT},
+            </if>
+            <if test="highAmtDay5 != null">
+                high_amt_Day5 = #{highAmtDay5, jdbcType=DECIMAL},
+            </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockBeforeRate" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_before_rate (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{rateDay3, jdbcType=DECIMAL},
+            #{rateDay5, jdbcType=DECIMAL},
+            #{rateDay10, jdbcType=DECIMAL},
+            #{rateDay20, jdbcType=DECIMAL},
+            #{rateDay30, jdbcType=DECIMAL},
+            #{rateDay40, jdbcType=DECIMAL},
+            #{rateDay60, jdbcType=DECIMAL},
+            #{actRateDay3, jdbcType=DECIMAL},
+            #{actRateDay5, jdbcType=DECIMAL},
+            #{actRateDay10, jdbcType=DECIMAL},
+            #{actRateDay15, jdbcType=DECIMAL},
+            #{actRateDay30, jdbcType=DECIMAL},
+            #{plankTimes220, jdbcType=TINYINT},
+            #{strongThan1000, jdbcType=DECIMAL},
+            #{strongThan10003, jdbcType=DECIMAL},
+            #{strongThan10005, jdbcType=DECIMAL},
+            #{afterDayPlankBias24, jdbcType=DECIMAL},
+        #{preAmount, jdbcType=DECIMAL},
+        #{preFiveAvgAmount, jdbcType=DECIMAL},
+        #{preIsHighAmtDay5, jdbcType=TINYINT},
+        #{touchPlankTimeDay10, jdbcType=TINYINT},
+        #{highAmtDay5, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockBeforeRate">
+        update stock_before_rate
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="rateDay3 != null">
+                rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay5 != null">
+                rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay10 != null">
+                rate_day10 = #{rateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay20 != null">
+                rate_day20 = #{rateDay20, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay30 != null">
+                rate_day30 = #{rateDay30, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay40 != null">
+                rate_day40 = #{rateDay40, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay60 != null">
+                rate_day60 = #{rateDay60, jdbcType=DECIMAL},
+            </if>
+            <if test="actRateDay3 != null">
+                act_rate_day3 = #{actRateDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="actRateDay5 != null">
+                act_rate_day5 = #{actRateDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="actRateDay10 != null">
+                act_rate_day10 = #{actRateDay10, jdbcType=DECIMAL},
+            </if>
+            <if test="actRateDay15 != null">
+                act_rate_day15 = #{actRateDay15, jdbcType=DECIMAL},
+            </if>
+            <if test="actRateDay30 != null">
+                act_rate_day30 = #{actRateDay30, jdbcType=DECIMAL},
+            </if>
+            <if test="plankTimes220 != null">
+                plank_times220 = #{plankTimes220, jdbcType=TINYINT},
+            </if>
+            <if test="strongThan1000 != null">
+                strong_than1000 = #{strongThan1000, jdbcType=DECIMAL},
+            </if>
+            <if test="strongThan10003 != null">
+                strong_than10003 = #{strongThan10003, jdbcType=DECIMAL},
+            </if>
+            <if test="strongThan10005 != null">
+                strong_than10005 = #{strongThan10005, jdbcType=DECIMAL},
+            </if>
+            <if test="afterDayPlankBias24 != null">
+                after_day_plank_bias24 = #{afterDayPlankBias24, jdbcType=DECIMAL},
+            </if>
+            <if test="preAmount != null">
+                pre_amount = #{preAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="preFiveAvgAmount != null">
+                pre_five_avg_amount = #{preFiveAvgAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="preIsHighAmtDay5 != null">
+                pre_is_high_amt_day5 = #{preIsHighAmtDay5, jdbcType=TINYINT},
+            </if>
+            <if test="touchPlankTimeDay10 != null">
+                touch_plank_time_day10 = #{touchPlankTimeDay10, jdbcType=TINYINT},
+            </if>
+            <if test="highAmtDay5 != null">
+                high_amt_day5 = #{highAmtDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="rateDay3 != null">
+            and rate_day3 = #{rateDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay5 != null">
+            and rate_day5 = #{rateDay5, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay10 != null">
+            and rate_day10 = #{rateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay20 != null">
+            and rate_day20 = #{rateDay20, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay30 != null">
+            and rate_day30 = #{rateDay30, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay40 != null">
+            and rate_day40 = #{rateDay40, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay60 != null">
+            and rate_day60 = #{rateDay60, jdbcType=DECIMAL}
+        </if>
+        <if test="actRateDay3 != null">
+            and act_rate_day3 = #{actRateDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="actRateDay5 != null">
+            and act_rate_day5 = #{actRateDay5, jdbcType=DECIMAL}
+        </if>
+        <if test="actRateDay10 != null">
+            and act_rate_day10 = #{actRateDay10, jdbcType=DECIMAL}
+        </if>
+        <if test="actRateDay15 != null">
+            and act_rate_day15 = #{actRateDay15, jdbcType=DECIMAL}
+        </if>
+        <if test="actRateDay30 != null">
+            and act_rate_day30 = #{actRateDay30, jdbcType=DECIMAL}
+        </if>
+        <if test="plankTimes220 != null">
+            and plank_times_220 = #{plankTimes220, jdbcType=TINYINT}
+        </if>
+        <if test="strongThan1000 != null">
+            and strong_than1000 = #{strongThan1000, jdbcType=DECIMAL}
+        </if>
+        <if test="strongThan10003 != null">
+            and strong_than10003 = #{strongThan10003, jdbcType=DECIMAL}
+        </if>
+        <if test="strongThan10005 != null">
+            and strong_than10005 = #{strongThan10005, jdbcType=DECIMAL}
+        </if>
+        <if test="afterDayPlankBias24 != null">
+            and after_day_plank_bias24 = #{afterDayPlankBias24, jdbcType=DECIMAL}
+        </if>
+        <if test="preAmount != null">
+            and pre_amount = #{preAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="preFiveAvgAmount != null">
+            and pre_five_avg_amount = #{preFiveAvgAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="preIsHighAmtDay5 != null">
+            and pre_is_high_amt_day5 = #{preIsHighAmtDay5, jdbcType=TINYINT}
+        </if>
+        <if test="touchPlankTimeDay10 != null">
+            touch_plank_time_day10 = #{touchPlankTimeDay10, jdbcType=TINYINT},
+        </if>
+        <if test="highAmtDay5 != null">
+            and high_amt_day5 = #{highAmtDay5, jdbcType=TINYINT}
+        </if>
+
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockBeforeRateQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_before_rate
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockBeforeRateQuery" resultType="java.lang.Integer">
+        select count(1)
+        from stock_before_rate
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

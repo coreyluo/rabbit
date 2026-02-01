@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.SliceTradeSumDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.SliceTradeSum">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="slice_time_to" jdbcType="VARCHAR" property="sliceTimeTo"/>
+        <result column="slice_type" jdbcType="TINYINT" property="sliceType"/>
+        <result column="count_buy0" jdbcType="INTEGER" property="countBuy0"/>
+        <result column="count_buy10" jdbcType="INTEGER" property="countBuy10"/>
+        <result column="count_buy20" jdbcType="INTEGER" property="countBuy20"/>
+        <result column="count_buy50" jdbcType="INTEGER" property="countBuy50"/>
+        <result column="count_buy100" jdbcType="INTEGER" property="countBuy100"/>
+        <result column="count_buy200" jdbcType="INTEGER" property="countBuy200"/>
+        <result column="amount_buy0" jdbcType="DECIMAL" property="amountBuy0"/>
+        <result column="amount_buy10" jdbcType="DECIMAL" property="amountBuy10"/>
+        <result column="amount_buy20" jdbcType="DECIMAL" property="amountBuy20"/>
+        <result column="amount_buy50" jdbcType="DECIMAL" property="amountBuy50"/>
+        <result column="amount_buy100" jdbcType="DECIMAL" property="amountBuy100"/>
+        <result column="amount_buy200" jdbcType="DECIMAL" property="amountBuy200"/>
+        <result column="volume_buy0" jdbcType="BIGINT" property="volumeBuy0"/>
+        <result column="volume_buy10" jdbcType="BIGINT" property="volumeBuy10"/>
+        <result column="volume_buy20" jdbcType="BIGINT" property="volumeBuy20"/>
+        <result column="volume_buy50" jdbcType="BIGINT" property="volumeBuy50"/>
+        <result column="volume_buy100" jdbcType="BIGINT" property="volumeBuy100"/>
+        <result column="volume_buy200" jdbcType="BIGINT" property="volumeBuy200"/>
+        <result column="count_sell0" jdbcType="INTEGER" property="countSell0"/>
+        <result column="count_sell10" jdbcType="INTEGER" property="countSell10"/>
+        <result column="count_sell20" jdbcType="INTEGER" property="countSell20"/>
+        <result column="count_sell50" jdbcType="INTEGER" property="countSell50"/>
+        <result column="count_sell100" jdbcType="INTEGER" property="countSell100"/>
+        <result column="count_sell200" jdbcType="INTEGER" property="countSell200"/>
+        <result column="amount_sell0" jdbcType="DECIMAL" property="amountSell0"/>
+        <result column="amount_sell10" jdbcType="DECIMAL" property="amountSell10"/>
+        <result column="amount_sell20" jdbcType="DECIMAL" property="amountSell20"/>
+        <result column="amount_sell50" jdbcType="DECIMAL" property="amountSell50"/>
+        <result column="amount_sell100" jdbcType="DECIMAL" property="amountSell100"/>
+        <result column="amount_sell200" jdbcType="DECIMAL" property="amountSell200"/>
+        <result column="volume_sell0" jdbcType="BIGINT" property="volumeSell0"/>
+        <result column="volume_sell10" jdbcType="BIGINT" property="volumeSell10"/>
+        <result column="volume_sell20" jdbcType="BIGINT" property="volumeSell20"/>
+        <result column="volume_sell50" jdbcType="BIGINT" property="volumeSell50"/>
+        <result column="volume_sell100" jdbcType="BIGINT" property="volumeSell100"/>
+        <result column="volume_sell200" jdbcType="BIGINT" property="volumeSell200"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            kbar_date,
+            slice_time_to,
+            slice_type,
+            count_buy0,
+            count_buy10,
+            count_buy20,
+            count_buy50,
+            count_buy100,
+            count_buy200,
+            amount_buy0,
+            amount_buy10,
+            amount_buy20,
+            amount_buy50,
+            amount_buy100,
+            amount_buy200,
+            volume_buy0,
+            volume_buy10,
+            volume_buy20,
+            volume_buy50,
+            volume_buy100,
+            volume_buy200,
+            count_sell0,
+            count_sell10,
+            count_sell20,
+            count_sell50,
+            count_sell100,
+            count_sell200,
+            amount_sell0,
+            amount_sell10,
+            amount_sell20,
+            amount_sell50,
+            amount_sell100,
+            amount_sell200,
+            volume_sell0,
+            volume_sell10,
+            volume_sell20,
+            volume_sell50,
+            volume_sell100,
+            volume_sell200,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from slice_trade_sum
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByKbarDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from slice_trade_sum
+        where kbar_date = #{kbarDate} limit 1
+    </select>
+
+    <update id="updateByKbarDate" parameterType="com.bazinga.replay.model.SliceTradeSum">
+        update slice_trade_sum
+        <set>
+        <if test="sliceTimeTo != null">
+            slice_time_to = #{sliceTimeTo, jdbcType=VARCHAR},
+        </if>
+        <if test="sliceType != null">
+            slice_type = #{sliceType, jdbcType=TINYINT},
+        </if>
+        <if test="countBuy0 != null">
+            count_buy0 = #{countBuy0, jdbcType=INTEGER},
+        </if>
+        <if test="countBuy10 != null">
+            count_buy10 = #{countBuy10, jdbcType=INTEGER},
+        </if>
+        <if test="countBuy20 != null">
+            count_buy20 = #{countBuy20, jdbcType=INTEGER},
+        </if>
+        <if test="countBuy50 != null">
+            count_buy50 = #{countBuy50, jdbcType=INTEGER},
+        </if>
+        <if test="countBuy100 != null">
+            count_buy100 = #{countBuy100, jdbcType=INTEGER},
+        </if>
+        <if test="countBuy200 != null">
+            count_buy200 = #{countBuy200, jdbcType=INTEGER},
+        </if>
+        <if test="amountBuy0 != null">
+            amount_buy0 = #{amountBuy0, jdbcType=DECIMAL},
+        </if>
+        <if test="amountBuy10 != null">
+            amount_buy10 = #{amountBuy10, jdbcType=DECIMAL},
+        </if>
+        <if test="amountBuy20 != null">
+            amount_buy20 = #{amountBuy20, jdbcType=DECIMAL},
+        </if>
+        <if test="amountBuy50 != null">
+            amount_buy50 = #{amountBuy50, jdbcType=DECIMAL},
+        </if>
+        <if test="amountBuy100 != null">
+            amount_buy100 = #{amountBuy100, jdbcType=DECIMAL},
+        </if>
+        <if test="amountBuy200 != null">
+            amount_buy200 = #{amountBuy200, jdbcType=DECIMAL},
+        </if>
+        <if test="volumeBuy0 != null">
+            volume_buy0 = #{volumeBuy0, jdbcType=BIGINT},
+        </if>
+        <if test="volumeBuy10 != null">
+            volume_buy10 = #{volumeBuy10, jdbcType=BIGINT},
+        </if>
+        <if test="volumeBuy20 != null">
+            volume_buy20 = #{volumeBuy20, jdbcType=BIGINT},
+        </if>
+        <if test="volumeBuy50 != null">
+            volume_buy50 = #{volumeBuy50, jdbcType=BIGINT},
+        </if>
+        <if test="volumeBuy100 != null">
+            volume_buy100 = #{volumeBuy100, jdbcType=BIGINT},
+        </if>
+        <if test="volumeBuy200 != null">
+            volume_buy200 = #{volumeBuy200, jdbcType=BIGINT},
+        </if>
+        <if test="countSell0 != null">
+            count_sell0 = #{countSell0, jdbcType=INTEGER},
+        </if>
+        <if test="countSell10 != null">
+            count_sell10 = #{countSell10, jdbcType=INTEGER},
+        </if>
+        <if test="countSell20 != null">
+            count_sell20 = #{countSell20, jdbcType=INTEGER},
+        </if>
+        <if test="countSell50 != null">
+            count_sell50 = #{countSell50, jdbcType=INTEGER},
+        </if>
+        <if test="countSell100 != null">
+            count_sell100 = #{countSell100, jdbcType=INTEGER},
+        </if>
+        <if test="countSell200 != null">
+            count_sell200 = #{countSell200, jdbcType=INTEGER},
+        </if>
+        <if test="amountSell0 != null">
+            amount_sell0 = #{amountSell0, jdbcType=DECIMAL},
+        </if>
+        <if test="amountSell10 != null">
+            amount_sell10 = #{amountSell10, jdbcType=DECIMAL},
+        </if>
+        <if test="amountSell20 != null">
+            amount_sell20 = #{amountSell20, jdbcType=DECIMAL},
+        </if>
+        <if test="amountSell50 != null">
+            amount_sell50 = #{amountSell50, jdbcType=DECIMAL},
+        </if>
+        <if test="amountSell100 != null">
+            amount_sell100 = #{amountSell100, jdbcType=DECIMAL},
+        </if>
+        <if test="amountSell200 != null">
+            amount_sell200 = #{amountSell200, jdbcType=DECIMAL},
+        </if>
+        <if test="volumeSell0 != null">
+            volume_sell0 = #{volumeSell0, jdbcType=BIGINT},
+        </if>
+        <if test="volumeSell10 != null">
+            volume_sell10 = #{volumeSell10, jdbcType=BIGINT},
+        </if>
+        <if test="volumeSell20 != null">
+            volume_sell20 = #{volumeSell20, jdbcType=BIGINT},
+        </if>
+        <if test="volumeSell50 != null">
+            volume_sell50 = #{volumeSell50, jdbcType=BIGINT},
+        </if>
+        <if test="volumeSell100 != null">
+            volume_sell100 = #{volumeSell100, jdbcType=BIGINT},
+        </if>
+        <if test="volumeSell200 != null">
+            volume_sell200 = #{volumeSell200, jdbcType=BIGINT},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where kbar_date = #{kbarDate} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.SliceTradeSum" useGeneratedKeys="true" keyProperty="id">
+        insert into slice_trade_sum (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{sliceTimeTo, jdbcType=VARCHAR},
+            #{sliceType, jdbcType=TINYINT},
+            #{countBuy0, jdbcType=INTEGER},
+            #{countBuy10, jdbcType=INTEGER},
+            #{countBuy20, jdbcType=INTEGER},
+            #{countBuy50, jdbcType=INTEGER},
+            #{countBuy100, jdbcType=INTEGER},
+            #{countBuy200, jdbcType=INTEGER},
+            #{amountBuy0, jdbcType=DECIMAL},
+            #{amountBuy10, jdbcType=DECIMAL},
+            #{amountBuy20, jdbcType=DECIMAL},
+            #{amountBuy50, jdbcType=DECIMAL},
+            #{amountBuy100, jdbcType=DECIMAL},
+            #{amountBuy200, jdbcType=DECIMAL},
+            #{volumeBuy0, jdbcType=BIGINT},
+            #{volumeBuy10, jdbcType=BIGINT},
+            #{volumeBuy20, jdbcType=BIGINT},
+            #{volumeBuy50, jdbcType=BIGINT},
+            #{volumeBuy100, jdbcType=BIGINT},
+            #{volumeBuy200, jdbcType=BIGINT},
+            #{countSell0, jdbcType=INTEGER},
+            #{countSell10, jdbcType=INTEGER},
+            #{countSell20, jdbcType=INTEGER},
+            #{countSell50, jdbcType=INTEGER},
+            #{countSell100, jdbcType=INTEGER},
+            #{countSell200, jdbcType=INTEGER},
+            #{amountSell0, jdbcType=DECIMAL},
+            #{amountSell10, jdbcType=DECIMAL},
+            #{amountSell20, jdbcType=DECIMAL},
+            #{amountSell50, jdbcType=DECIMAL},
+            #{amountSell100, jdbcType=DECIMAL},
+            #{amountSell200, jdbcType=DECIMAL},
+            #{volumeSell0, jdbcType=BIGINT},
+            #{volumeSell10, jdbcType=BIGINT},
+            #{volumeSell20, jdbcType=BIGINT},
+            #{volumeSell50, jdbcType=BIGINT},
+            #{volumeSell100, jdbcType=BIGINT},
+            #{volumeSell200, jdbcType=BIGINT},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.SliceTradeSum">
+        update slice_trade_sum
+        <set>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="sliceTimeTo != null">
+                slice_time_to = #{sliceTimeTo, jdbcType=VARCHAR},
+            </if>
+            <if test="sliceType != null">
+                slice_type = #{sliceType, jdbcType=TINYINT},
+            </if>
+            <if test="countBuy0 != null">
+                count_buy0 = #{countBuy0, jdbcType=INTEGER},
+            </if>
+            <if test="countBuy10 != null">
+                count_buy10 = #{countBuy10, jdbcType=INTEGER},
+            </if>
+            <if test="countBuy20 != null">
+                count_buy20 = #{countBuy20, jdbcType=INTEGER},
+            </if>
+            <if test="countBuy50 != null">
+                count_buy50 = #{countBuy50, jdbcType=INTEGER},
+            </if>
+            <if test="countBuy100 != null">
+                count_buy100 = #{countBuy100, jdbcType=INTEGER},
+            </if>
+            <if test="countBuy200 != null">
+                count_buy200 = #{countBuy200, jdbcType=INTEGER},
+            </if>
+            <if test="amountBuy0 != null">
+                amount_buy0 = #{amountBuy0, jdbcType=DECIMAL},
+            </if>
+            <if test="amountBuy10 != null">
+                amount_buy10 = #{amountBuy10, jdbcType=DECIMAL},
+            </if>
+            <if test="amountBuy20 != null">
+                amount_buy20 = #{amountBuy20, jdbcType=DECIMAL},
+            </if>
+            <if test="amountBuy50 != null">
+                amount_buy50 = #{amountBuy50, jdbcType=DECIMAL},
+            </if>
+            <if test="amountBuy100 != null">
+                amount_buy100 = #{amountBuy100, jdbcType=DECIMAL},
+            </if>
+            <if test="amountBuy200 != null">
+                amount_buy200 = #{amountBuy200, jdbcType=DECIMAL},
+            </if>
+            <if test="volumeBuy0 != null">
+                volume_buy0 = #{volumeBuy0, jdbcType=BIGINT},
+            </if>
+            <if test="volumeBuy10 != null">
+                volume_buy10 = #{volumeBuy10, jdbcType=BIGINT},
+            </if>
+            <if test="volumeBuy20 != null">
+                volume_buy20 = #{volumeBuy20, jdbcType=BIGINT},
+            </if>
+            <if test="volumeBuy50 != null">
+                volume_buy50 = #{volumeBuy50, jdbcType=BIGINT},
+            </if>
+            <if test="volumeBuy100 != null">
+                volume_buy100 = #{volumeBuy100, jdbcType=BIGINT},
+            </if>
+            <if test="volumeBuy200 != null">
+                volume_buy200 = #{volumeBuy200, jdbcType=BIGINT},
+            </if>
+            <if test="countSell0 != null">
+                count_sell0 = #{countSell0, jdbcType=INTEGER},
+            </if>
+            <if test="countSell10 != null">
+                count_sell10 = #{countSell10, jdbcType=INTEGER},
+            </if>
+            <if test="countSell20 != null">
+                count_sell20 = #{countSell20, jdbcType=INTEGER},
+            </if>
+            <if test="countSell50 != null">
+                count_sell50 = #{countSell50, jdbcType=INTEGER},
+            </if>
+            <if test="countSell100 != null">
+                count_sell100 = #{countSell100, jdbcType=INTEGER},
+            </if>
+            <if test="countSell200 != null">
+                count_sell200 = #{countSell200, jdbcType=INTEGER},
+            </if>
+            <if test="amountSell0 != null">
+                amount_sell0 = #{amountSell0, jdbcType=DECIMAL},
+            </if>
+            <if test="amountSell10 != null">
+                amount_sell10 = #{amountSell10, jdbcType=DECIMAL},
+            </if>
+            <if test="amountSell20 != null">
+                amount_sell20 = #{amountSell20, jdbcType=DECIMAL},
+            </if>
+            <if test="amountSell50 != null">
+                amount_sell50 = #{amountSell50, jdbcType=DECIMAL},
+            </if>
+            <if test="amountSell100 != null">
+                amount_sell100 = #{amountSell100, jdbcType=DECIMAL},
+            </if>
+            <if test="amountSell200 != null">
+                amount_sell200 = #{amountSell200, jdbcType=DECIMAL},
+            </if>
+            <if test="volumeSell0 != null">
+                volume_sell0 = #{volumeSell0, jdbcType=BIGINT},
+            </if>
+            <if test="volumeSell10 != null">
+                volume_sell10 = #{volumeSell10, jdbcType=BIGINT},
+            </if>
+            <if test="volumeSell20 != null">
+                volume_sell20 = #{volumeSell20, jdbcType=BIGINT},
+            </if>
+            <if test="volumeSell50 != null">
+                volume_sell50 = #{volumeSell50, jdbcType=BIGINT},
+            </if>
+            <if test="volumeSell100 != null">
+                volume_sell100 = #{volumeSell100, jdbcType=BIGINT},
+            </if>
+            <if test="volumeSell200 != null">
+                volume_sell200 = #{volumeSell200, jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="sliceTimeTo != null">
+            and slice_time_to = #{sliceTimeTo, jdbcType=VARCHAR}
+        </if>
+        <if test="sliceType != null">
+            and slice_type = #{sliceType, jdbcType=TINYINT}
+        </if>
+        <if test="countBuy0 != null">
+            and count_buy0 = #{countBuy0, jdbcType=INTEGER}
+        </if>
+        <if test="countBuy10 != null">
+            and count_buy10 = #{countBuy10, jdbcType=INTEGER}
+        </if>
+        <if test="countBuy20 != null">
+            and count_buy20 = #{countBuy20, jdbcType=INTEGER}
+        </if>
+        <if test="countBuy50 != null">
+            and count_buy50 = #{countBuy50, jdbcType=INTEGER}
+        </if>
+        <if test="countBuy100 != null">
+            and count_buy100 = #{countBuy100, jdbcType=INTEGER}
+        </if>
+        <if test="countBuy200 != null">
+            and count_buy200 = #{countBuy200, jdbcType=INTEGER}
+        </if>
+        <if test="amountBuy0 != null">
+            and amount_buy0 = #{amountBuy0, jdbcType=DECIMAL}
+        </if>
+        <if test="amountBuy10 != null">
+            and amount_buy10 = #{amountBuy10, jdbcType=DECIMAL}
+        </if>
+        <if test="amountBuy20 != null">
+            and amount_buy20 = #{amountBuy20, jdbcType=DECIMAL}
+        </if>
+        <if test="amountBuy50 != null">
+            and amount_buy50 = #{amountBuy50, jdbcType=DECIMAL}
+        </if>
+        <if test="amountBuy100 != null">
+            and amount_buy100 = #{amountBuy100, jdbcType=DECIMAL}
+        </if>
+        <if test="amountBuy200 != null">
+            and amount_buy200 = #{amountBuy200, jdbcType=DECIMAL}
+        </if>
+        <if test="volumeBuy0 != null">
+            and volume_buy0 = #{volumeBuy0, jdbcType=BIGINT}
+        </if>
+        <if test="volumeBuy10 != null">
+            and volume_buy10 = #{volumeBuy10, jdbcType=BIGINT}
+        </if>
+        <if test="volumeBuy20 != null">
+            and volume_buy20 = #{volumeBuy20, jdbcType=BIGINT}
+        </if>
+        <if test="volumeBuy50 != null">
+            and volume_buy50 = #{volumeBuy50, jdbcType=BIGINT}
+        </if>
+        <if test="volumeBuy100 != null">
+            and volume_buy100 = #{volumeBuy100, jdbcType=BIGINT}
+        </if>
+        <if test="volumeBuy200 != null">
+            and volume_buy200 = #{volumeBuy200, jdbcType=BIGINT}
+        </if>
+        <if test="countSell0 != null">
+            and count_sell0 = #{countSell0, jdbcType=INTEGER}
+        </if>
+        <if test="countSell10 != null">
+            and count_sell10 = #{countSell10, jdbcType=INTEGER}
+        </if>
+        <if test="countSell20 != null">
+            and count_sell20 = #{countSell20, jdbcType=INTEGER}
+        </if>
+        <if test="countSell50 != null">
+            and count_sell50 = #{countSell50, jdbcType=INTEGER}
+        </if>
+        <if test="countSell100 != null">
+            and count_sell100 = #{countSell100, jdbcType=INTEGER}
+        </if>
+        <if test="countSell200 != null">
+            and count_sell200 = #{countSell200, jdbcType=INTEGER}
+        </if>
+        <if test="amountSell0 != null">
+            and amount_sell0 = #{amountSell0, jdbcType=DECIMAL}
+        </if>
+        <if test="amountSell10 != null">
+            and amount_sell10 = #{amountSell10, jdbcType=DECIMAL}
+        </if>
+        <if test="amountSell20 != null">
+            and amount_sell20 = #{amountSell20, jdbcType=DECIMAL}
+        </if>
+        <if test="amountSell50 != null">
+            and amount_sell50 = #{amountSell50, jdbcType=DECIMAL}
+        </if>
+        <if test="amountSell100 != null">
+            and amount_sell100 = #{amountSell100, jdbcType=DECIMAL}
+        </if>
+        <if test="amountSell200 != null">
+            and amount_sell200 = #{amountSell200, jdbcType=DECIMAL}
+        </if>
+        <if test="volumeSell0 != null">
+            and volume_sell0 = #{volumeSell0, jdbcType=BIGINT}
+        </if>
+        <if test="volumeSell10 != null">
+            and volume_sell10 = #{volumeSell10, jdbcType=BIGINT}
+        </if>
+        <if test="volumeSell20 != null">
+            and volume_sell20 = #{volumeSell20, jdbcType=BIGINT}
+        </if>
+        <if test="volumeSell50 != null">
+            and volume_sell50 = #{volumeSell50, jdbcType=BIGINT}
+        </if>
+        <if test="volumeSell100 != null">
+            and volume_sell100 = #{volumeSell100, jdbcType=BIGINT}
+        </if>
+        <if test="volumeSell200 != null">
+            and volume_sell200 = #{volumeSell200, jdbcType=BIGINT}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.SliceTradeSumQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from slice_trade_sum
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.SliceTradeSumQuery" resultType="java.lang.Integer">
+        select count(1)
+        from slice_trade_sum
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

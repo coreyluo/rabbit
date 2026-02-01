@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.AdsIm1000StockFeaturePredDataV1DdDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.AdsIm1000StockFeaturePredDataV1Dd">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="date_trade" jdbcType="BIGINT" property="dateTrade"/>
+        <result column="stock_code" jdbcType="BIGINT" property="stockCode"/>
+        <result column="profit" jdbcType="DOUBLE" property="profit"/>
+        <result column="profit_classify" jdbcType="BIGINT" property="profitClassify"/>
+        <result column="pred_data" jdbcType="BIGINT" property="predData"/>
+        <result column="pred_data_proba" jdbcType="DOUBLE" property="predDataProba"/>
+        <result column="pred_data_value" jdbcType="DOUBLE" property="predDataValue"/>
+        <result column="plank_flag" jdbcType="TINYINT" property="plankFlag"/>
+        <result column="profit_end_sell" jdbcType="DECIMAL" property="profitEndSell"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            date_trade,
+            stock_code,
+            profit,
+            profit_classify,
+            pred_data,
+            pred_data_proba,
+            pred_data_value,
+            plank_flag,
+            profit_end_sell
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from ads_im1000_stock_feature_pred_data_v1_dd
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.AdsIm1000StockFeaturePredDataV1Dd" useGeneratedKeys="true" keyProperty="id">
+        insert into ads_im1000_stock_feature_pred_data_v1_dd (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{dateTrade, jdbcType=BIGINT},
+            #{stockCode, jdbcType=BIGINT},
+            #{profit, jdbcType=DOUBLE},
+            #{profitClassify, jdbcType=BIGINT},
+            #{predData, jdbcType=BIGINT},
+            #{predDataProba, jdbcType=DOUBLE},
+            #{predDataValue, jdbcType=DOUBLE}
+            #{plankFlag, jdbcType=TINYINT},
+            #{profitEndSell, jdbcType=DECIMAL}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.AdsIm1000StockFeaturePredDataV1Dd">
+        update ads_im1000_stock_feature_pred_data_v1_dd
+        <set>
+            <if test="dateTrade != null">
+                date_trade = #{dateTrade, jdbcType=BIGINT},
+            </if>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=BIGINT},
+            </if>
+            <if test="profit != null">
+                profit = #{profit, jdbcType=DOUBLE},
+            </if>
+            <if test="profitClassify != null">
+                profit_classify = #{profitClassify, jdbcType=BIGINT},
+            </if>
+            <if test="predData != null">
+                pred_data = #{predData, jdbcType=BIGINT},
+            </if>
+            <if test="predDataProba != null">
+                pred_data_proba = #{predDataProba, jdbcType=DOUBLE},
+            </if>
+            <if test="predDataValue != null">
+                pred_data_value = #{predDataValue, jdbcType=DOUBLE},
+            </if>
+            <if test="plankFlag != null">
+                plank_flag = #{plankFlag, jdbcType=TINYINT},
+            </if>
+            <if test="profitEndSell != null">
+                profit_end_sell = #{profitEndSell, jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="dateTrade != null">
+            and date_trade = #{dateTrade, jdbcType=BIGINT}
+        </if>
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=BIGINT}
+        </if>
+        <if test="profit != null">
+            and profit = #{profit, jdbcType=DOUBLE}
+        </if>
+        <if test="profitClassify != null">
+            and profit_classify = #{profitClassify, jdbcType=BIGINT}
+        </if>
+        <if test="predData != null">
+            and pred_data = #{predData, jdbcType=BIGINT}
+        </if>
+        <if test="predDataProba != null">
+            and pred_data_proba = #{predDataProba, jdbcType=DOUBLE}
+        </if>
+        <if test="predDataValue != null">
+            and pred_data_value = #{predDataValue, jdbcType=DOUBLE}
+        </if>
+        <if test="plankFlag != null">
+            plank_flag = #{plankFlag, jdbcType=TINYINT},
+        </if>
+        <if test="profitEndSell != null">
+            profit_end_sell = #{profitEndSell, jdbcType=DECIMAL},
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.AdsIm1000StockFeaturePredDataV1DdQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from ads_im1000_stock_feature_pred_data_v1_dd
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.AdsIm1000StockFeaturePredDataV1DdQuery" resultType="java.lang.Integer">
+        select count(1)
+        from ads_im1000_stock_feature_pred_data_v1_dd
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

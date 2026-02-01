@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.IndexBeforeRateDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.IndexBeforeRate">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="index_code" jdbcType="VARCHAR" property="indexCode"/>
+        <result column="index_name" jdbcType="VARCHAR" property="indexName"/>
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="rate_day1" jdbcType="DECIMAL" property="rateDay1"/>
+        <result column="rate_day2" jdbcType="DECIMAL" property="rateDay2"/>
+        <result column="rate_day3" jdbcType="DECIMAL" property="rateDay3"/>
+        <result column="rate_day5" jdbcType="DECIMAL" property="rateDay5"/>
+        <result column="open_rate" jdbcType="DECIMAL" property="openRate"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            index_code,
+            index_name,
+            kbar_date,
+            unique_key,
+            rate_day1,
+            rate_day2,
+            rate_day3,
+            rate_day5,
+            open_rate,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from index_before_rate
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from index_before_rate
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.IndexBeforeRate">
+        update index_before_rate
+        <set>
+        <if test="indexCode != null">
+            index_code = #{indexCode, jdbcType=VARCHAR},
+        </if>
+        <if test="indexName != null">
+            index_name = #{indexName, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarDate != null">
+            kbar_date = #{kbarDate, jdbcType=VARCHAR},
+        </if>
+        <if test="rateDay1 != null">
+            rate_day1 = #{rateDay1, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay2 != null">
+            rate_day2 = #{rateDay2, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay3 != null">
+            rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+        </if>
+        <if test="rateDay5 != null">
+            rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+        </if>
+        <if test="openRate != null">
+            open_rate = #{openRate, jdbcType=DECIMAL},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.IndexBeforeRate" useGeneratedKeys="true" keyProperty="id">
+        insert into index_before_rate (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{indexCode, jdbcType=VARCHAR},
+            #{indexName, jdbcType=VARCHAR},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{rateDay1, jdbcType=DECIMAL},
+            #{rateDay2, jdbcType=DECIMAL},
+            #{rateDay3, jdbcType=DECIMAL},
+            #{rateDay5, jdbcType=DECIMAL},
+            #{openRate, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.IndexBeforeRate">
+        update index_before_rate
+        <set>
+            <if test="indexCode != null">
+                index_code = #{indexCode, jdbcType=VARCHAR},
+            </if>
+            <if test="indexName != null">
+                index_name = #{indexName, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="rateDay1 != null">
+                rate_day1 = #{rateDay1, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay2 != null">
+                rate_day2 = #{rateDay2, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay3 != null">
+                rate_day3 = #{rateDay3, jdbcType=DECIMAL},
+            </if>
+            <if test="rateDay5 != null">
+                rate_day5 = #{rateDay5, jdbcType=DECIMAL},
+            </if>
+            <if test="openRate != null">
+                open_rate = #{openRate, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="indexCode != null">
+            and index_code = #{indexCode, jdbcType=VARCHAR}
+        </if>
+        <if test="indexName != null">
+            and index_name = #{indexName, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="rateDay1 != null">
+            and rate_day1 = #{rateDay1, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay2 != null">
+            and rate_day2 = #{rateDay2, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay3 != null">
+            and rate_day3 = #{rateDay3, jdbcType=DECIMAL}
+        </if>
+        <if test="rateDay5 != null">
+            and rate_day5 = #{rateDay5, jdbcType=DECIMAL}
+        </if>
+        <if test="openRate != null">
+            and open_rate = #{openRate, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.IndexBeforeRateQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from index_before_rate
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.IndexBeforeRateQuery" resultType="java.lang.Integer">
+        select count(1)
+        from index_before_rate
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

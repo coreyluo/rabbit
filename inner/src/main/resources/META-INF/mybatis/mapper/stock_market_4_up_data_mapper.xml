@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockMarket4UpDataDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockMarket4UpData">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="date_trade" jdbcType="VARCHAR" property="dateTrade"/>
+        <result column="high_price" jdbcType="DECIMAL" property="highPrice"/>
+        <result column="time_trade" jdbcType="VARCHAR" property="timeTrade"/>
+        <result column="latest" jdbcType="DECIMAL" property="latest"/>
+        <result column="total_volume" jdbcType="DECIMAL" property="totalVolume"/>
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount"/>
+        <result column="avg_price" jdbcType="DECIMAL" property="avgPrice"/>
+        <result column="total_buy_amount" jdbcType="DECIMAL" property="totalBuyAmount"/>
+        <result column="total_sell_amount" jdbcType="DECIMAL" property="totalSellAmount"/>
+        <result column="time_trade_num" jdbcType="BIGINT"  property="timeTradeNum" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            date_trade,
+            high_price,
+            time_trade,
+            latest,
+            total_volume,
+            total_amount,
+            avg_price,
+            total_buy_amount,
+            total_sell_amount,
+            time_trade_num,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_market_4_up_data
+        where id = #{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockMarket4UpData" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_market_4_up_data (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{dateTrade, jdbcType=VARCHAR},
+            #{highPrice, jdbcType=DECIMAL},
+            #{timeTrade, jdbcType=VARCHAR},
+            #{latest, jdbcType=DECIMAL},
+            #{totalVolume, jdbcType=DECIMAL},
+            #{totalAmount, jdbcType=DECIMAL},
+            #{avgPrice, jdbcType=DECIMAL},
+            #{totalBuyAmount, jdbcType=DECIMAL},
+            #{totalSellAmount, jdbcType=DECIMAL},
+        #{timeTradeNum, jdbcType=BIGINT},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockMarket4UpData">
+        update stock_market_4_up_data
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="dateTrade != null">
+                date_trade = #{dateTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="highPrice != null">
+                high_price = #{highPrice, jdbcType=DECIMAL},
+            </if>
+            <if test="timeTrade != null">
+                time_trade = #{timeTrade, jdbcType=VARCHAR},
+            </if>
+            <if test="latest != null">
+                latest = #{latest, jdbcType=DECIMAL},
+            </if>
+            <if test="totalVolume != null">
+                total_volume = #{totalVolume, jdbcType=DECIMAL},
+            </if>
+            <if test="totalAmount != null">
+                total_amount = #{totalAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="avgPrice != null">
+                avg_price = #{avgPrice, jdbcType=DECIMAL},
+            </if>
+            <if test="totalBuyAmount != null">
+                total_buy_amount = #{totalBuyAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="totalSellAmount != null">
+                total_sell_amount = #{totalSellAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="timeTradeNum != null">
+                time_trade_num = #{timeTradeNum, jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="dateTrade != null">
+            and date_trade = #{dateTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="highPrice != null">
+            and high_price = #{highPrice, jdbcType=DECIMAL}
+        </if>
+        <if test="timeTrade != null">
+            and time_trade = #{timeTrade, jdbcType=VARCHAR}
+        </if>
+        <if test="latest != null">
+            and latest = #{latest, jdbcType=DECIMAL}
+        </if>
+        <if test="totalVolume != null">
+            and total_volume = #{totalVolume, jdbcType=DECIMAL}
+        </if>
+        <if test="totalAmount != null">
+            and total_amount = #{totalAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="avgPrice != null">
+            and avg_price = #{avgPrice, jdbcType=DECIMAL}
+        </if>
+        <if test="totalBuyAmount != null">
+            and total_buy_amount = #{totalBuyAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="totalSellAmount != null">
+            and total_sell_amount = #{totalSellAmount, jdbcType=DECIMAL}
+        </if>
+        <if test="timeTradeNum != null">
+            and time_trade_num = #{timeTradeNum, jdbcType=BIGINT}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockMarket4UpDataQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_market_4_up_data
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockMarket4UpDataQuery" resultType="java.lang.Integer">
+        select count(1)
+        from stock_market_4_up_data
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

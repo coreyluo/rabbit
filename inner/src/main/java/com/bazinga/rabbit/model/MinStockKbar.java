@@ -1,0 +1,289 @@
+package com.bazinga.rabbit.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+/**
+ * 〈MinStockKbar〉<p>
+ *
+ * @author
+ * @date 2023-08-23
+ */
+@lombok.Data
+@lombok.ToString
+public class MinStockKbar implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 
+     *
+     * @允许为空   NO
+     * @是否索引   YES
+     * @唯一索引   PRIMARY
+     */
+    private Long id;
+
+    /**
+     * 股票代码
+     *
+     * @最大长度   10
+     * @允许为空   NO
+     * @是否索引   YES
+     */
+    private String stockCode;
+
+    /**
+     * 股票名称
+     *
+     * @最大长度   60
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private String stockName;
+
+    /**
+     * 交易日期
+     *
+     * @最大长度   60
+     * @允许为空   NO
+     * @是否索引   YES
+     */
+    private String kbarDate;
+
+    /**
+     * 时间
+     *
+     * @最大长度   60
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private String kbarTime;
+
+    /**
+     * 唯一索引
+     *
+     * @最大长度   60
+     * @允许为空   NO
+     * @是否索引   YES
+     * @唯一索引   uk_unique_key
+     */
+    private String uniqueKey;
+
+    /**
+     * 开盘价
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private BigDecimal openPrice;
+
+    /**
+     * 收盘价
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private BigDecimal closePrice;
+
+    /**
+     * 最高价
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private BigDecimal highPrice;
+
+    /**
+     * 最低价
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private BigDecimal lowPrice;
+
+    /**
+     * 开盘价
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal adjOpenPrice;
+
+    /**
+     * 收盘价
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal adjClosePrice;
+
+    /**
+     * 最高价
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal adjHighPrice;
+
+    /**
+     * 最低价
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal adjLowPrice;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal aftAdjOpenPrice;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal aftAdjClosePrice;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal aftAdjHighPrice;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal aftAdjLowPrice;
+
+    /**
+     * 复权因子
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal adjFactor;
+
+    /**
+     * 1 一分钟k线 10 十分钟k线
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private Integer kbarType;
+
+    /**
+     * 成交数量(单位手)
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private Long tradeQuantity;
+
+    /**
+     * 成交额
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private BigDecimal tradeAmount;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal emaShort;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal emaLong;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal macd;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal diff;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal dea;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal bias6;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal bias12;
+
+    /**
+     * 
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private BigDecimal bias24;
+
+
+    private BigDecimal ma5;
+    private BigDecimal ma10;
+    private BigDecimal ma20;
+    private BigDecimal ma30;
+    private BigDecimal ma60;
+    /**
+     * 创建时间
+     *
+     * @允许为空   NO
+     * @是否索引   NO
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     *
+     * @允许为空   YES
+     * @是否索引   NO
+     */
+    private Date updateTime;
+
+
+}

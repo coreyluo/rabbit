@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.BtCapitalFlowMinDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.BtCapitalFlowMin">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="thscode" jdbcType="VARCHAR" property="thscode"/>
+        <result column="market" jdbcType="VARCHAR" property="market"/>
+        <result column="sec_type" jdbcType="VARCHAR" property="secType"/>
+        <result column="trade_date" jdbcType="VARCHAR" property="tradeDate"/>
+        <result column="trade_time" jdbcType="VARCHAR" property="tradeTime"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="volume_trade" jdbcType="DECIMAL" property="volumeTrade"/>
+        <result column="buy_volume" jdbcType="DECIMAL" property="buyVolume"/>
+        <result column="sell_volume" jdbcType="DECIMAL" property="sellVolume"/>
+        <result column="active_buy_large_vol" jdbcType="DECIMAL" property="activeBuyLargeVol"/>
+        <result column="active_sell_large_vol" jdbcType="DECIMAL" property="activeSellLargeVol"/>
+        <result column="active_buy_large_amt" jdbcType="DECIMAL" property="activeBuyLargeAmt"/>
+        <result column="active_sell_large_amt" jdbcType="DECIMAL" property="activeSellLargeAmt"/>
+        <result column="possitive_buy_large_vol" jdbcType="DECIMAL" property="possitiveBuyLargeVol"/>
+        <result column="possitive_sell_large_vol" jdbcType="DECIMAL" property="possitiveSellLargeVol"/>
+        <result column="possitive_buy_large_amt" jdbcType="DECIMAL" property="possitiveBuyLargeAmt"/>
+        <result column="possitive_sell_large_amt" jdbcType="DECIMAL" property="possitiveSellLargeAmt"/>
+        <result column="active_buy_main_vol" jdbcType="DECIMAL" property="activeBuyMainVol"/>
+        <result column="active_sell_main_vol" jdbcType="DECIMAL" property="activeSellMainVol"/>
+        <result column="active_buy_main_amt" jdbcType="DECIMAL" property="activeBuyMainAmt"/>
+        <result column="active_sell_main_amt" jdbcType="DECIMAL" property="activeSellMainAmt"/>
+        <result column="possitive_buy_main_vol" jdbcType="DECIMAL" property="possitiveBuyMainVol"/>
+        <result column="possitive_sell_main_vol" jdbcType="DECIMAL" property="possitiveSellMainVol"/>
+        <result column="possitive_buy_main_amt" jdbcType="DECIMAL" property="possitiveBuyMainAmt"/>
+        <result column="possitive_sell_main_amt" jdbcType="DECIMAL" property="possitiveSellMainAmt"/>
+        <result column="active_buy_middle_vol" jdbcType="DECIMAL" property="activeBuyMiddleVol"/>
+        <result column="active_sell_middle_vol" jdbcType="DECIMAL" property="activeSellMiddleVol"/>
+        <result column="active_buy_middle_amt" jdbcType="DECIMAL" property="activeBuyMiddleAmt"/>
+        <result column="active_sell_middle_amt" jdbcType="DECIMAL" property="activeSellMiddleAmt"/>
+        <result column="possitive_buy_middle_vol" jdbcType="DECIMAL" property="possitiveBuyMiddleVol"/>
+        <result column="possitive_sell_middle_vol" jdbcType="DECIMAL" property="possitiveSellMiddleVol"/>
+        <result column="possitive_buy_middle_amt" jdbcType="DECIMAL" property="possitiveBuyMiddleAmt"/>
+        <result column="possitive_sell_middle_amt" jdbcType="DECIMAL" property="possitiveSellMiddleAmt"/>
+        <result column="active_buy_small_vol" jdbcType="DECIMAL" property="activeBuySmallVol"/>
+        <result column="active_sell_small_vol" jdbcType="DECIMAL" property="activeSellSmallVol"/>
+        <result column="active_buy_small_amt" jdbcType="DECIMAL" property="activeBuySmallAmt"/>
+        <result column="active_sell_small_amt" jdbcType="DECIMAL" property="activeSellSmallAmt"/>
+        <result column="possitive_buy_small_vol" jdbcType="DECIMAL" property="possitiveBuySmallVol"/>
+        <result column="possitive_sell_small_vol" jdbcType="DECIMAL" property="possitiveSellSmallVol"/>
+        <result column="possitive_buy_small_amt" jdbcType="DECIMAL" property="possitiveBuySmallAmt"/>
+        <result column="possitive_sell_small_amt" jdbcType="DECIMAL" property="possitiveSellSmallAmt"/>
+        <result column="seq_num" jdbcType="DECIMAL" property="seqNum"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            thscode,
+            market,
+            sec_type,
+            trade_date,
+            trade_time,
+            unique_key,
+            volume_trade,
+            buy_volume,
+            sell_volume,
+            active_buy_large_vol,
+            active_sell_large_vol,
+            active_buy_large_amt,
+            active_sell_large_amt,
+            possitive_buy_large_vol,
+            possitive_sell_large_vol,
+            possitive_buy_large_amt,
+            possitive_sell_large_amt,
+            active_buy_main_vol,
+            active_sell_main_vol,
+            active_buy_main_amt,
+            active_sell_main_amt,
+            possitive_buy_main_vol,
+            possitive_sell_main_vol,
+            possitive_buy_main_amt,
+            possitive_sell_main_amt,
+            active_buy_middle_vol,
+            active_sell_middle_vol,
+            active_buy_middle_amt,
+            active_sell_middle_amt,
+            possitive_buy_middle_vol,
+            possitive_sell_middle_vol,
+            possitive_buy_middle_amt,
+            possitive_sell_middle_amt,
+            active_buy_small_vol,
+            active_sell_small_vol,
+            active_buy_small_amt,
+            active_sell_small_amt,
+            possitive_buy_small_vol,
+            possitive_sell_small_vol,
+            possitive_buy_small_amt,
+            possitive_sell_small_amt,
+            seq_num,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bt_capital_flow_min
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bt_capital_flow_min
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.BtCapitalFlowMin">
+        update bt_capital_flow_min
+        <set>
+        <if test="thscode != null">
+            thscode = #{thscode, jdbcType=VARCHAR},
+        </if>
+        <if test="market != null">
+            market = #{market, jdbcType=VARCHAR},
+        </if>
+        <if test="secType != null">
+            sec_type = #{secType, jdbcType=VARCHAR},
+        </if>
+        <if test="tradeDate != null">
+            trade_date = #{tradeDate, jdbcType=VARCHAR},
+        </if>
+        <if test="tradeTime != null">
+            trade_time = #{tradeTime, jdbcType=VARCHAR},
+        </if>
+        <if test="volumeTrade != null">
+            volume_trade = #{volumeTrade, jdbcType=DECIMAL},
+        </if>
+        <if test="buyVolume != null">
+            buy_volume = #{buyVolume, jdbcType=DECIMAL},
+        </if>
+        <if test="sellVolume != null">
+            sell_volume = #{sellVolume, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyLargeVol != null">
+            active_buy_large_vol = #{activeBuyLargeVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellLargeVol != null">
+            active_sell_large_vol = #{activeSellLargeVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyLargeAmt != null">
+            active_buy_large_amt = #{activeBuyLargeAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellLargeAmt != null">
+            active_sell_large_amt = #{activeSellLargeAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyLargeVol != null">
+            possitive_buy_large_vol = #{possitiveBuyLargeVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellLargeVol != null">
+            possitive_sell_large_vol = #{possitiveSellLargeVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyLargeAmt != null">
+            possitive_buy_large_amt = #{possitiveBuyLargeAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellLargeAmt != null">
+            possitive_sell_large_amt = #{possitiveSellLargeAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyMainVol != null">
+            active_buy_main_vol = #{activeBuyMainVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellMainVol != null">
+            active_sell_main_vol = #{activeSellMainVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyMainAmt != null">
+            active_buy_main_amt = #{activeBuyMainAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellMainAmt != null">
+            active_sell_main_amt = #{activeSellMainAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyMainVol != null">
+            possitive_buy_main_vol = #{possitiveBuyMainVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellMainVol != null">
+            possitive_sell_main_vol = #{possitiveSellMainVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyMainAmt != null">
+            possitive_buy_main_amt = #{possitiveBuyMainAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellMainAmt != null">
+            possitive_sell_main_amt = #{possitiveSellMainAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyMiddleVol != null">
+            active_buy_middle_vol = #{activeBuyMiddleVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellMiddleVol != null">
+            active_sell_middle_vol = #{activeSellMiddleVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuyMiddleAmt != null">
+            active_buy_middle_amt = #{activeBuyMiddleAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellMiddleAmt != null">
+            active_sell_middle_amt = #{activeSellMiddleAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyMiddleVol != null">
+            possitive_buy_middle_vol = #{possitiveBuyMiddleVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellMiddleVol != null">
+            possitive_sell_middle_vol = #{possitiveSellMiddleVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuyMiddleAmt != null">
+            possitive_buy_middle_amt = #{possitiveBuyMiddleAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellMiddleAmt != null">
+            possitive_sell_middle_amt = #{possitiveSellMiddleAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuySmallVol != null">
+            active_buy_small_vol = #{activeBuySmallVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellSmallVol != null">
+            active_sell_small_vol = #{activeSellSmallVol, jdbcType=DECIMAL},
+        </if>
+        <if test="activeBuySmallAmt != null">
+            active_buy_small_amt = #{activeBuySmallAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="activeSellSmallAmt != null">
+            active_sell_small_amt = #{activeSellSmallAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuySmallVol != null">
+            possitive_buy_small_vol = #{possitiveBuySmallVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellSmallVol != null">
+            possitive_sell_small_vol = #{possitiveSellSmallVol, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveBuySmallAmt != null">
+            possitive_buy_small_amt = #{possitiveBuySmallAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="possitiveSellSmallAmt != null">
+            possitive_sell_small_amt = #{possitiveSellSmallAmt, jdbcType=DECIMAL},
+        </if>
+        <if test="seqNum != null">
+            seq_num = #{seqNum, jdbcType=DECIMAL},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.BtCapitalFlowMin" useGeneratedKeys="true" keyProperty="id">
+        insert into bt_capital_flow_min (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{thscode, jdbcType=VARCHAR},
+            #{market, jdbcType=VARCHAR},
+            #{secType, jdbcType=VARCHAR},
+            #{tradeDate, jdbcType=VARCHAR},
+            #{tradeTime, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{volumeTrade, jdbcType=DECIMAL},
+            #{buyVolume, jdbcType=DECIMAL},
+            #{sellVolume, jdbcType=DECIMAL},
+            #{activeBuyLargeVol, jdbcType=DECIMAL},
+            #{activeSellLargeVol, jdbcType=DECIMAL},
+            #{activeBuyLargeAmt, jdbcType=DECIMAL},
+            #{activeSellLargeAmt, jdbcType=DECIMAL},
+            #{possitiveBuyLargeVol, jdbcType=DECIMAL},
+            #{possitiveSellLargeVol, jdbcType=DECIMAL},
+            #{possitiveBuyLargeAmt, jdbcType=DECIMAL},
+            #{possitiveSellLargeAmt, jdbcType=DECIMAL},
+            #{activeBuyMainVol, jdbcType=DECIMAL},
+            #{activeSellMainVol, jdbcType=DECIMAL},
+            #{activeBuyMainAmt, jdbcType=DECIMAL},
+            #{activeSellMainAmt, jdbcType=DECIMAL},
+            #{possitiveBuyMainVol, jdbcType=DECIMAL},
+            #{possitiveSellMainVol, jdbcType=DECIMAL},
+            #{possitiveBuyMainAmt, jdbcType=DECIMAL},
+            #{possitiveSellMainAmt, jdbcType=DECIMAL},
+            #{activeBuyMiddleVol, jdbcType=DECIMAL},
+            #{activeSellMiddleVol, jdbcType=DECIMAL},
+            #{activeBuyMiddleAmt, jdbcType=DECIMAL},
+            #{activeSellMiddleAmt, jdbcType=DECIMAL},
+            #{possitiveBuyMiddleVol, jdbcType=DECIMAL},
+            #{possitiveSellMiddleVol, jdbcType=DECIMAL},
+            #{possitiveBuyMiddleAmt, jdbcType=DECIMAL},
+            #{possitiveSellMiddleAmt, jdbcType=DECIMAL},
+            #{activeBuySmallVol, jdbcType=DECIMAL},
+            #{activeSellSmallVol, jdbcType=DECIMAL},
+            #{activeBuySmallAmt, jdbcType=DECIMAL},
+            #{activeSellSmallAmt, jdbcType=DECIMAL},
+            #{possitiveBuySmallVol, jdbcType=DECIMAL},
+            #{possitiveSellSmallVol, jdbcType=DECIMAL},
+            #{possitiveBuySmallAmt, jdbcType=DECIMAL},
+            #{possitiveSellSmallAmt, jdbcType=DECIMAL},
+            #{seqNum, jdbcType=DECIMAL},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.BtCapitalFlowMin">
+        update bt_capital_flow_min
+        <set>
+            <if test="thscode != null">
+                thscode = #{thscode, jdbcType=VARCHAR},
+            </if>
+            <if test="market != null">
+                market = #{market, jdbcType=VARCHAR},
+            </if>
+            <if test="secType != null">
+                sec_type = #{secType, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeDate != null">
+                trade_date = #{tradeDate, jdbcType=VARCHAR},
+            </if>
+            <if test="tradeTime != null">
+                trade_time = #{tradeTime, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="volumeTrade != null">
+                volume_trade = #{volumeTrade, jdbcType=DECIMAL},
+            </if>
+            <if test="buyVolume != null">
+                buy_volume = #{buyVolume, jdbcType=DECIMAL},
+            </if>
+            <if test="sellVolume != null">
+                sell_volume = #{sellVolume, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyLargeVol != null">
+                active_buy_large_vol = #{activeBuyLargeVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellLargeVol != null">
+                active_sell_large_vol = #{activeSellLargeVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyLargeAmt != null">
+                active_buy_large_amt = #{activeBuyLargeAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellLargeAmt != null">
+                active_sell_large_amt = #{activeSellLargeAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyLargeVol != null">
+                possitive_buy_large_vol = #{possitiveBuyLargeVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellLargeVol != null">
+                possitive_sell_large_vol = #{possitiveSellLargeVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyLargeAmt != null">
+                possitive_buy_large_amt = #{possitiveBuyLargeAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellLargeAmt != null">
+                possitive_sell_large_amt = #{possitiveSellLargeAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyMainVol != null">
+                active_buy_main_vol = #{activeBuyMainVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellMainVol != null">
+                active_sell_main_vol = #{activeSellMainVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyMainAmt != null">
+                active_buy_main_amt = #{activeBuyMainAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellMainAmt != null">
+                active_sell_main_amt = #{activeSellMainAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyMainVol != null">
+                possitive_buy_main_vol = #{possitiveBuyMainVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellMainVol != null">
+                possitive_sell_main_vol = #{possitiveSellMainVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyMainAmt != null">
+                possitive_buy_main_amt = #{possitiveBuyMainAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellMainAmt != null">
+                possitive_sell_main_amt = #{possitiveSellMainAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyMiddleVol != null">
+                active_buy_middle_vol = #{activeBuyMiddleVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellMiddleVol != null">
+                active_sell_middle_vol = #{activeSellMiddleVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuyMiddleAmt != null">
+                active_buy_middle_amt = #{activeBuyMiddleAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellMiddleAmt != null">
+                active_sell_middle_amt = #{activeSellMiddleAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyMiddleVol != null">
+                possitive_buy_middle_vol = #{possitiveBuyMiddleVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellMiddleVol != null">
+                possitive_sell_middle_vol = #{possitiveSellMiddleVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuyMiddleAmt != null">
+                possitive_buy_middle_amt = #{possitiveBuyMiddleAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellMiddleAmt != null">
+                possitive_sell_middle_amt = #{possitiveSellMiddleAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuySmallVol != null">
+                active_buy_small_vol = #{activeBuySmallVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellSmallVol != null">
+                active_sell_small_vol = #{activeSellSmallVol, jdbcType=DECIMAL},
+            </if>
+            <if test="activeBuySmallAmt != null">
+                active_buy_small_amt = #{activeBuySmallAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="activeSellSmallAmt != null">
+                active_sell_small_amt = #{activeSellSmallAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuySmallVol != null">
+                possitive_buy_small_vol = #{possitiveBuySmallVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellSmallVol != null">
+                possitive_sell_small_vol = #{possitiveSellSmallVol, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveBuySmallAmt != null">
+                possitive_buy_small_amt = #{possitiveBuySmallAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="possitiveSellSmallAmt != null">
+                possitive_sell_small_amt = #{possitiveSellSmallAmt, jdbcType=DECIMAL},
+            </if>
+            <if test="seqNum != null">
+                seq_num = #{seqNum, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="thscode != null">
+            and thscode = #{thscode, jdbcType=VARCHAR}
+        </if>
+        <if test="market != null">
+            and market = #{market, jdbcType=VARCHAR}
+        </if>
+        <if test="secType != null">
+            and sec_type = #{secType, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeDate != null">
+            and trade_date = #{tradeDate, jdbcType=VARCHAR}
+        </if>
+        <if test="tradeTime != null">
+            and trade_time = #{tradeTime, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="volumeTrade != null">
+            and volume_trade = #{volumeTrade, jdbcType=DECIMAL}
+        </if>
+        <if test="buyVolume != null">
+            and buy_volume = #{buyVolume, jdbcType=DECIMAL}
+        </if>
+        <if test="sellVolume != null">
+            and sell_volume = #{sellVolume, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyLargeVol != null">
+            and active_buy_large_vol = #{activeBuyLargeVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellLargeVol != null">
+            and active_sell_large_vol = #{activeSellLargeVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyLargeAmt != null">
+            and active_buy_large_amt = #{activeBuyLargeAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellLargeAmt != null">
+            and active_sell_large_amt = #{activeSellLargeAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyLargeVol != null">
+            and possitive_buy_large_vol = #{possitiveBuyLargeVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellLargeVol != null">
+            and possitive_sell_large_vol = #{possitiveSellLargeVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyLargeAmt != null">
+            and possitive_buy_large_amt = #{possitiveBuyLargeAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellLargeAmt != null">
+            and possitive_sell_large_amt = #{possitiveSellLargeAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyMainVol != null">
+            and active_buy_main_vol = #{activeBuyMainVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellMainVol != null">
+            and active_sell_main_vol = #{activeSellMainVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyMainAmt != null">
+            and active_buy_main_amt = #{activeBuyMainAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellMainAmt != null">
+            and active_sell_main_amt = #{activeSellMainAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyMainVol != null">
+            and possitive_buy_main_vol = #{possitiveBuyMainVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellMainVol != null">
+            and possitive_sell_main_vol = #{possitiveSellMainVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyMainAmt != null">
+            and possitive_buy_main_amt = #{possitiveBuyMainAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellMainAmt != null">
+            and possitive_sell_main_amt = #{possitiveSellMainAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyMiddleVol != null">
+            and active_buy_middle_vol = #{activeBuyMiddleVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellMiddleVol != null">
+            and active_sell_middle_vol = #{activeSellMiddleVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuyMiddleAmt != null">
+            and active_buy_middle_amt = #{activeBuyMiddleAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellMiddleAmt != null">
+            and active_sell_middle_amt = #{activeSellMiddleAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyMiddleVol != null">
+            and possitive_buy_middle_vol = #{possitiveBuyMiddleVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellMiddleVol != null">
+            and possitive_sell_middle_vol = #{possitiveSellMiddleVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuyMiddleAmt != null">
+            and possitive_buy_middle_amt = #{possitiveBuyMiddleAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellMiddleAmt != null">
+            and possitive_sell_middle_amt = #{possitiveSellMiddleAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuySmallVol != null">
+            and active_buy_small_vol = #{activeBuySmallVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellSmallVol != null">
+            and active_sell_small_vol = #{activeSellSmallVol, jdbcType=DECIMAL}
+        </if>
+        <if test="activeBuySmallAmt != null">
+            and active_buy_small_amt = #{activeBuySmallAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="activeSellSmallAmt != null">
+            and active_sell_small_amt = #{activeSellSmallAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuySmallVol != null">
+            and possitive_buy_small_vol = #{possitiveBuySmallVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellSmallVol != null">
+            and possitive_sell_small_vol = #{possitiveSellSmallVol, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveBuySmallAmt != null">
+            and possitive_buy_small_amt = #{possitiveBuySmallAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="possitiveSellSmallAmt != null">
+            and possitive_sell_small_amt = #{possitiveSellSmallAmt, jdbcType=DECIMAL}
+        </if>
+        <if test="seqNum != null">
+            and seq_num = #{seqNum, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.BtCapitalFlowMinQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from bt_capital_flow_min
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.BtCapitalFlowMinQuery" resultType="java.lang.Integer">
+        select count(1)
+        from bt_capital_flow_min
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>

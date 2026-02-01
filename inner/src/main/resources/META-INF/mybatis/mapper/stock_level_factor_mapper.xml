@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bazinga.replay.dao.StockLevelFactorDAO">
+
+    <resultMap id="BaseResultMap" type="com.bazinga.replay.model.StockLevelFactor">
+        <id column="id" jdbcType="BIGINT"  property="id" />
+        <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
+        <result column="stock_name" jdbcType="VARCHAR" property="stockName"/>
+        <result column="kbar_date" jdbcType="VARCHAR" property="kbarDate"/>
+        <result column="unique_key" jdbcType="VARCHAR" property="uniqueKey"/>
+        <result column="trun_ratio_level" jdbcType="BIGINT" property="trunRatioLevel"/>
+        <result column="trun_ratio_num" jdbcType="BIGINT" property="trunRatioNum"/>
+        <result column="trade_amount_level" jdbcType="BIGINT" property="tradeAmountLevel"/>
+        <result column="trade_amount_num" jdbcType="BIGINT" property="tradeAmountNum"/>
+        <result column="rate3_level" jdbcType="BIGINT" property="rate3Level"/>
+        <result column="rate3_num" jdbcType="BIGINT" property="rate3Num"/>
+        <result column="rate5_level" jdbcType="BIGINT" property="rate5Level"/>
+        <result column="rate5_num" jdbcType="BIGINT" property="rate5Num"/>
+        <result column="rate10_level" jdbcType="BIGINT" property="rate10Level"/>
+        <result column="rate10_num" jdbcType="BIGINT" property="rate10Num"/>
+        <result column="rate15_level" jdbcType="BIGINT" property="rate15Level"/>
+        <result column="rate15_num" jdbcType="BIGINT" property="rate15Num"/>
+        <result column="rate30_level" jdbcType="BIGINT" property="rate30Level"/>
+        <result column="rate30_num" jdbcType="BIGINT" property="rate30Num"/>
+        <result column="rate_end_level" jdbcType="BIGINT" property="rateEndLevel"/>
+        <result column="rate_end_num" jdbcType="BIGINT" property="rateEndNum"/>
+        <result column="rate_amp_level" jdbcType="BIGINT" property="rateAmpLevel"/>
+        <result column="rate_amp_num" jdbcType="BIGINT" property="rateAmpNum"/>
+        <result column="market_value_level" jdbcType="BIGINT" property="marketValueLevel"/>
+        <result column="market_value_num" jdbcType="BIGINT" property="marketValueNum"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,
+            stock_code,
+            stock_name,
+            kbar_date,
+            unique_key,
+            trun_ratio_level,
+            trun_ratio_num,
+            trade_amount_level,
+            trade_amount_num,
+            rate3_level,
+            rate3_num,
+            rate5_level,
+            rate5_num,
+            rate10_level,
+            rate10_num,
+            rate15_level,
+            rate15_num,
+            rate30_level,
+            rate30_num,
+            rate_end_level,
+            rate_end_num,
+            rate_amp_level,
+            rate_amp_num,
+            market_value_level,
+            market_value_num,
+            create_time,
+            update_time
+        </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_level_factor
+        where id = #{id}
+    </select>
+
+
+    <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from stock_level_factor
+        where unique_key = #{uniqueKey} limit 1
+    </select>
+
+    <update id="updateByUniqueKey" parameterType="com.bazinga.replay.model.StockLevelFactor">
+        update stock_level_factor
+        <set>
+        <if test="stockCode != null">
+            stock_code = #{stockCode, jdbcType=VARCHAR},
+        </if>
+        <if test="stockName != null">
+            stock_name = #{stockName, jdbcType=VARCHAR},
+        </if>
+        <if test="kbarDate != null">
+            kbar_date = #{kbarDate, jdbcType=VARCHAR},
+        </if>
+        <if test="trunRatioLevel != null">
+            trun_ratio_level = #{trunRatioLevel, jdbcType=BIGINT},
+        </if>
+        <if test="trunRatioNum != null">
+            trun_ratio_num = #{trunRatioNum, jdbcType=BIGINT},
+        </if>
+        <if test="tradeAmountLevel != null">
+            trade_amount_level = #{tradeAmountLevel, jdbcType=BIGINT},
+        </if>
+        <if test="tradeAmountNum != null">
+            trade_amount_num = #{tradeAmountNum, jdbcType=BIGINT},
+        </if>
+        <if test="rate3Level != null">
+            rate3_level = #{rate3Level, jdbcType=BIGINT},
+        </if>
+        <if test="rate3Num != null">
+            rate3_num = #{rate3Num, jdbcType=BIGINT},
+        </if>
+        <if test="rate5Level != null">
+            rate5_level = #{rate5Level, jdbcType=BIGINT},
+        </if>
+        <if test="rate5Num != null">
+            rate5_num = #{rate5Num, jdbcType=BIGINT},
+        </if>
+        <if test="rate10Level != null">
+            rate10_level = #{rate10Level, jdbcType=BIGINT},
+        </if>
+        <if test="rate10Num != null">
+            rate10_num = #{rate10Num, jdbcType=BIGINT},
+        </if>
+        <if test="rate15Level != null">
+            rate15_level = #{rate15Level, jdbcType=BIGINT},
+        </if>
+        <if test="rate15Num != null">
+            rate15_num = #{rate15Num, jdbcType=BIGINT},
+        </if>
+        <if test="rate30Level != null">
+            rate30_level = #{rate30Level, jdbcType=BIGINT},
+        </if>
+        <if test="rate30Num != null">
+            rate30_num = #{rate30Num, jdbcType=BIGINT},
+        </if>
+        <if test="rateEndLevel != null">
+            rate_end_level = #{rateEndLevel, jdbcType=BIGINT},
+        </if>
+        <if test="rateEndNum != null">
+            rate_end_num = #{rateEndNum, jdbcType=BIGINT},
+        </if>
+        <if test="rateAmpLevel != null">
+            rate_amp_level = #{rateAmpLevel, jdbcType=BIGINT},
+        </if>
+        <if test="rateAmpNum != null">
+            rate_amp_num = #{rateAmpNum, jdbcType=BIGINT},
+        </if>
+        <if test="marketValueLevel != null">
+            market_value_level = #{marketValueLevel, jdbcType=BIGINT},
+        </if>
+        <if test="marketValueNum != null">
+            market_value_num = #{marketValueNum, jdbcType=BIGINT},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime, jdbcType=TIMESTAMP},
+        </if>
+        </set>
+        where unique_key = #{uniqueKey} limit 1
+    </update>
+    <insert id="insert" parameterType="com.bazinga.replay.model.StockLevelFactor" useGeneratedKeys="true" keyProperty="id">
+        insert into stock_level_factor (<include refid="Base_Column_List" />)
+        values(
+        #{id, jdbcType=BIGINT},
+            #{stockCode, jdbcType=VARCHAR},
+            #{stockName, jdbcType=VARCHAR},
+            #{kbarDate, jdbcType=VARCHAR},
+            #{uniqueKey, jdbcType=VARCHAR},
+            #{trunRatioLevel, jdbcType=BIGINT},
+            #{trunRatioNum, jdbcType=BIGINT},
+            #{tradeAmountLevel, jdbcType=BIGINT},
+            #{tradeAmountNum, jdbcType=BIGINT},
+            #{rate3Level, jdbcType=BIGINT},
+            #{rate3Num, jdbcType=BIGINT},
+            #{rate5Level, jdbcType=BIGINT},
+            #{rate5Num, jdbcType=BIGINT},
+            #{rate10Level, jdbcType=BIGINT},
+            #{rate10Num, jdbcType=BIGINT},
+            #{rate15Level, jdbcType=BIGINT},
+            #{rate15Num, jdbcType=BIGINT},
+            #{rate30Level, jdbcType=BIGINT},
+            #{rate30Num, jdbcType=BIGINT},
+            #{rateEndLevel, jdbcType=BIGINT},
+            #{rateEndNum, jdbcType=BIGINT},
+            #{rateAmpLevel, jdbcType=BIGINT},
+            #{rateAmpNum, jdbcType=BIGINT},
+            #{marketValueLevel, jdbcType=BIGINT},
+            #{marketValueNum, jdbcType=BIGINT},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bazinga.replay.model.StockLevelFactor">
+        update stock_level_factor
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode, jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                stock_name = #{stockName, jdbcType=VARCHAR},
+            </if>
+            <if test="kbarDate != null">
+                kbar_date = #{kbarDate, jdbcType=VARCHAR},
+            </if>
+            <if test="uniqueKey != null">
+                unique_key = #{uniqueKey, jdbcType=VARCHAR},
+            </if>
+            <if test="trunRatioLevel != null">
+                trun_ratio_level = #{trunRatioLevel, jdbcType=BIGINT},
+            </if>
+            <if test="trunRatioNum != null">
+                trun_ratio_num = #{trunRatioNum, jdbcType=BIGINT},
+            </if>
+            <if test="tradeAmountLevel != null">
+                trade_amount_level = #{tradeAmountLevel, jdbcType=BIGINT},
+            </if>
+            <if test="tradeAmountNum != null">
+                trade_amount_num = #{tradeAmountNum, jdbcType=BIGINT},
+            </if>
+            <if test="rate3Level != null">
+                rate3_level = #{rate3Level, jdbcType=BIGINT},
+            </if>
+            <if test="rate3Num != null">
+                rate3_num = #{rate3Num, jdbcType=BIGINT},
+            </if>
+            <if test="rate5Level != null">
+                rate5_level = #{rate5Level, jdbcType=BIGINT},
+            </if>
+            <if test="rate5Num != null">
+                rate5_num = #{rate5Num, jdbcType=BIGINT},
+            </if>
+            <if test="rate10Level != null">
+                rate10_level = #{rate10Level, jdbcType=BIGINT},
+            </if>
+            <if test="rate10Num != null">
+                rate10_num = #{rate10Num, jdbcType=BIGINT},
+            </if>
+            <if test="rate15Level != null">
+                rate15_level = #{rate15Level, jdbcType=BIGINT},
+            </if>
+            <if test="rate15Num != null">
+                rate15_num = #{rate15Num, jdbcType=BIGINT},
+            </if>
+            <if test="rate30Level != null">
+                rate30_level = #{rate30Level, jdbcType=BIGINT},
+            </if>
+            <if test="rate30Num != null">
+                rate30_num = #{rate30Num, jdbcType=BIGINT},
+            </if>
+            <if test="rateEndLevel != null">
+                rate_end_level = #{rateEndLevel, jdbcType=BIGINT},
+            </if>
+            <if test="rateEndNum != null">
+                rate_end_num = #{rateEndNum, jdbcType=BIGINT},
+            </if>
+            <if test="rateAmpLevel != null">
+                rate_amp_level = #{rateAmpLevel, jdbcType=BIGINT},
+            </if>
+            <if test="rateAmpNum != null">
+                rate_amp_num = #{rateAmpNum, jdbcType=BIGINT},
+            </if>
+            <if test="marketValueLevel != null">
+                market_value_level = #{marketValueLevel, jdbcType=BIGINT},
+            </if>
+            <if test="marketValueNum != null">
+                market_value_num = #{marketValueNum, jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id} limit 1
+    </update>
+
+    <sql id="Equal_Where_List">
+        <if test="stockCode != null">
+            and stock_code = #{stockCode, jdbcType=VARCHAR}
+        </if>
+        <if test="stockName != null">
+            and stock_name = #{stockName, jdbcType=VARCHAR}
+        </if>
+        <if test="kbarDate != null">
+            and kbar_date = #{kbarDate, jdbcType=VARCHAR}
+        </if>
+        <if test="uniqueKey != null">
+            and unique_key = #{uniqueKey, jdbcType=VARCHAR}
+        </if>
+        <if test="trunRatioLevel != null">
+            and trun_ratio_level = #{trunRatioLevel, jdbcType=BIGINT}
+        </if>
+        <if test="trunRatioNum != null">
+            and trun_ratio_num = #{trunRatioNum, jdbcType=BIGINT}
+        </if>
+        <if test="tradeAmountLevel != null">
+            and trade_amount_level = #{tradeAmountLevel, jdbcType=BIGINT}
+        </if>
+        <if test="tradeAmountNum != null">
+            and trade_amount_num = #{tradeAmountNum, jdbcType=BIGINT}
+        </if>
+        <if test="rate3Level != null">
+            and rate3_level = #{rate3Level, jdbcType=BIGINT}
+        </if>
+        <if test="rate3Num != null">
+            and rate3_num = #{rate3Num, jdbcType=BIGINT}
+        </if>
+        <if test="rate5Level != null">
+            and rate5_level = #{rate5Level, jdbcType=BIGINT}
+        </if>
+        <if test="rate5Num != null">
+            and rate5_num = #{rate5Num, jdbcType=BIGINT}
+        </if>
+        <if test="rate10Level != null">
+            and rate10_level = #{rate10Level, jdbcType=BIGINT}
+        </if>
+        <if test="rate10Num != null">
+            and rate10_num = #{rate10Num, jdbcType=BIGINT}
+        </if>
+        <if test="rate15Level != null">
+            and rate15_level = #{rate15Level, jdbcType=BIGINT}
+        </if>
+        <if test="rate15Num != null">
+            and rate15_num = #{rate15Num, jdbcType=BIGINT}
+        </if>
+        <if test="rate30Level != null">
+            and rate30_level = #{rate30Level, jdbcType=BIGINT}
+        </if>
+        <if test="rate30Num != null">
+            and rate30_num = #{rate30Num, jdbcType=BIGINT}
+        </if>
+        <if test="rateEndLevel != null">
+            and rate_end_level = #{rateEndLevel, jdbcType=BIGINT}
+        </if>
+        <if test="rateEndNum != null">
+            and rate_end_num = #{rateEndNum, jdbcType=BIGINT}
+        </if>
+        <if test="rateAmpLevel != null">
+            and rate_amp_level = #{rateAmpLevel, jdbcType=BIGINT}
+        </if>
+        <if test="rateAmpNum != null">
+            and rate_amp_num = #{rateAmpNum, jdbcType=BIGINT}
+        </if>
+        <if test="marketValueLevel != null">
+            and market_value_level = #{marketValueLevel, jdbcType=BIGINT}
+        </if>
+        <if test="marketValueNum != null">
+            and market_value_num = #{marketValueNum, jdbcType=BIGINT}
+        </if>
+    </sql>
+
+    <sql id="Range_Where_List">
+        <if test="createTimeFrom != null">
+            <![CDATA[
+            and create_time >= #{createTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="createTimeTo != null">
+            <![CDATA[
+            and create_time <= #{createTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeFrom != null">
+            <![CDATA[
+            and update_time >= #{updateTimeFrom, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+        <if test="updateTimeTo != null">
+            <![CDATA[
+            and update_time <= #{updateTimeTo, jdbcType=TIMESTAMP}
+            ]]>
+        </if>
+    </sql>
+
+    <sql id="GtLastMaxId_Where">
+        <if test="lastMaxId != null and lastMaxId > 0">
+            and id > #{lastMaxId}
+        </if>
+    </sql>
+
+    <sql id="Order_By">
+        <if test="sorts != null and sorts.size > 0">
+            ORDER BY
+            <foreach collection="sorts" item="sortItem" separator=",">
+                ${sortItem.column} ${sortItem.type.message}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.bazinga.replay.query.StockLevelFactorQuery" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from stock_level_factor
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+            <include refid="GtLastMaxId_Where" />
+        </where>
+        <include refid="Order_By"/>
+        <if test="limit > 0">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.bazinga.replay.query.StockLevelFactorQuery" resultType="java.lang.Integer">
+        select count(1)
+        from stock_level_factor
+        <where>
+            <include refid="Equal_Where_List"/>
+            <include refid="Range_Where_List"/>
+        </where>
+    </select>
+
+
+</mapper>
