@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.query;
 
 
-import com.bazinga.base.PagingQuery;
+
+import com.bazinga.rabbit.base.PagingQuery;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

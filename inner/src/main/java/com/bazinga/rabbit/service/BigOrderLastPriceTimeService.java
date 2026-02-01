@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.BigOrderLastPriceTime;
-import com.bazinga.replay.query.BigOrderLastPriceTimeQuery;
+
+import com.bazinga.rabbit.model.BigOrderLastPriceTime;
+import com.bazinga.rabbit.query.BigOrderLastPriceTimeQuery;
 
 import java.util.List;
 
