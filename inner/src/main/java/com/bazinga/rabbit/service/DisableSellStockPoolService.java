@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.DisableSellStockPool;
-import com.bazinga.replay.query.DisableSellStockPoolQuery;
+
+import com.bazinga.rabbit.model.DisableSellStockPool;
+import com.bazinga.rabbit.query.DisableSellStockPoolQuery;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.BlockKbarSelf;
-import com.bazinga.replay.query.BlockKbarSelfQuery;
+
+import com.bazinga.rabbit.model.BlockKbarSelf;
+import com.bazinga.rabbit.query.BlockKbarSelfQuery;
 
 import java.util.List;
 

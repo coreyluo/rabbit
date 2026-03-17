@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.HistoryStock143000;
-import com.bazinga.replay.query.HistoryStock143000Query;
+import com.bazinga.rabbit.model.HistoryStock143000;
+import com.bazinga.rabbit.query.HistoryStock143000Query;
 
 import java.util.List;
 

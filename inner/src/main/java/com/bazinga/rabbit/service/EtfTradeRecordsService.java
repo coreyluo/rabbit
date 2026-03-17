@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.EtfTradeRecords;
-import com.bazinga.replay.query.EtfTradeRecordsQuery;
+import com.bazinga.rabbit.model.EtfTradeRecords;
+import com.bazinga.rabbit.query.EtfTradeRecordsQuery;
 
 import java.util.List;
 

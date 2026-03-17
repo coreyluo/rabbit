@@ -1,7 +1,9 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.ActFactorInfo;
-import com.bazinga.replay.query.ActFactorInfoQuery;
+
+
+import com.bazinga.rabbit.model.ActFactorInfo;
+import com.bazinga.rabbit.query.ActFactorInfoQuery;
 
 import java.util.List;
 

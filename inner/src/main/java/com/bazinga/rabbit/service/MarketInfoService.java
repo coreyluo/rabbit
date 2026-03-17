@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.MarketInfo;
-import com.bazinga.replay.query.MarketInfoQuery;
+import com.bazinga.rabbit.model.MarketInfo;
+import com.bazinga.rabbit.query.MarketInfoQuery;
 
 import java.util.List;
 

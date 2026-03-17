@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.BlockBatchBuyPool;
-import com.bazinga.replay.query.BlockBatchBuyPoolQuery;
+
+import com.bazinga.rabbit.model.BlockBatchBuyPool;
+import com.bazinga.rabbit.query.BlockBatchBuyPoolQuery;
 
 import java.util.List;
 

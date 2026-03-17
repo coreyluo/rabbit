@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.If300OrderSlice;
-import com.bazinga.replay.query.If300OrderSliceQuery;
+import com.bazinga.rabbit.model.If300OrderSlice;
+import com.bazinga.rabbit.query.If300OrderSliceQuery;
 
 import java.util.List;
 

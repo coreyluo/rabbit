@@ -1,7 +1,9 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.DragonTigerDaily;
-import com.bazinga.replay.query.DragonTigerDailyQuery;
+
+
+import com.bazinga.rabbit.model.DragonTigerDaily;
+import com.bazinga.rabbit.query.DragonTigerDailyQuery;
 
 import java.util.List;
 

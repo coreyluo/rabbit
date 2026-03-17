@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.IndexBeforeRate;
-import com.bazinga.replay.query.IndexBeforeRateQuery;
+import com.bazinga.rabbit.model.IndexBeforeRate;
+import com.bazinga.rabbit.query.IndexBeforeRateQuery;
 
 import java.util.List;
 

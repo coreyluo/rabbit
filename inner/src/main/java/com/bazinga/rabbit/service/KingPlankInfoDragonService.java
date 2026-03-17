@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.KingPlankInfoDragon;
-import com.bazinga.replay.query.KingPlankInfoDragonQuery;
+import com.bazinga.rabbit.model.KingPlankInfoDragon;
+import com.bazinga.rabbit.query.KingPlankInfoDragonQuery;
 
 import java.util.List;
 

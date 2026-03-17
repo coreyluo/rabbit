@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.IndexDetail;
-import com.bazinga.replay.query.IndexDetailQuery;
+import com.bazinga.rabbit.model.IndexDetail;
+import com.bazinga.rabbit.query.IndexDetailQuery;
 
 import java.util.List;
 

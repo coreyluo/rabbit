@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.AdsReturnSealData;
-import com.bazinga.replay.query.AdsReturnSealDataQuery;
+
+import com.bazinga.rabbit.model.AdsReturnSealData;
+import com.bazinga.rabbit.query.AdsReturnSealDataQuery;
 
 import java.util.List;
 

@@ -1,7 +1,9 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.BlockInfo;
-import com.bazinga.replay.query.BlockInfoQuery;
+
+
+import com.bazinga.rabbit.model.BlockInfo;
+import com.bazinga.rabbit.query.BlockInfoQuery;
 
 import java.util.List;
 

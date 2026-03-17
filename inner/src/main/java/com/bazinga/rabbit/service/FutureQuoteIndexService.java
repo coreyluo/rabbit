@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.FutureQuoteIndex;
-import com.bazinga.replay.query.FutureQuoteIndexQuery;
+import com.bazinga.rabbit.model.FutureQuoteIndex;
+import com.bazinga.rabbit.query.FutureQuoteIndexQuery;
 
 import java.util.List;
 

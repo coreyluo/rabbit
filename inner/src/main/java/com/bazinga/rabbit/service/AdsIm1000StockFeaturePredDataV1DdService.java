@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.AdsIm1000StockFeaturePredDataV1Dd;
-import com.bazinga.replay.query.AdsIm1000StockFeaturePredDataV1DdQuery;
+
+import com.bazinga.rabbit.model.AdsIm1000StockFeaturePredDataV1Dd;
+import com.bazinga.rabbit.query.AdsIm1000StockFeaturePredDataV1DdQuery;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.MarketLoverParam;
-import com.bazinga.replay.query.MarketLoverParamQuery;
+import com.bazinga.rabbit.model.MarketLoverParam;
+import com.bazinga.rabbit.query.MarketLoverParamQuery;
 
 import java.util.List;
 

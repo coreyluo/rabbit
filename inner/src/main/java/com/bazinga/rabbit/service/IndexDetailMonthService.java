@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.IndexDetailMonth;
-import com.bazinga.replay.query.IndexDetailMonthQuery;
+import com.bazinga.rabbit.model.IndexDetailMonth;
+import com.bazinga.rabbit.query.IndexDetailMonthQuery;
 
 import java.util.List;
 

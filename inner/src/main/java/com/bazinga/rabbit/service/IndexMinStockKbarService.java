@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.IndexMinStockKbar;
-import com.bazinga.replay.query.IndexMinStockKbarQuery;
+import com.bazinga.rabbit.model.IndexMinStockKbar;
+import com.bazinga.rabbit.query.IndexMinStockKbarQuery;
 
 import java.util.List;
 

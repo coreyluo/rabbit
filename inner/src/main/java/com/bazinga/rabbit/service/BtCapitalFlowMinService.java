@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.BtCapitalFlowMin;
-import com.bazinga.replay.query.BtCapitalFlowMinQuery;
+
+import com.bazinga.rabbit.model.BtCapitalFlowMin;
+import com.bazinga.rabbit.query.BtCapitalFlowMinQuery;
 
 import java.util.List;
 

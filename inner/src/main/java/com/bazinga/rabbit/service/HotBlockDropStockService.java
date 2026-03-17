@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.HotBlockDropStock;
-import com.bazinga.replay.query.HotBlockDropStockQuery;
+import com.bazinga.rabbit.model.HotBlockDropStock;
+import com.bazinga.rabbit.query.HotBlockDropStockQuery;
 
 import java.util.List;
 

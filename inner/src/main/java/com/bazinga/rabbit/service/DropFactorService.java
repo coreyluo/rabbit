@@ -1,7 +1,8 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.DropFactor;
-import com.bazinga.replay.query.DropFactorQuery;
+
+import com.bazinga.rabbit.model.DropFactor;
+import com.bazinga.rabbit.query.DropFactorQuery;
 
 import java.util.List;
 

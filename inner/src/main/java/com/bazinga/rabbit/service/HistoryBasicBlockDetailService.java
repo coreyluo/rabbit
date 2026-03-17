@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.HistoryBasicBlockDetail;
-import com.bazinga.replay.query.HistoryBasicBlockDetailQuery;
+import com.bazinga.rabbit.model.HistoryBasicBlockDetail;
+import com.bazinga.rabbit.query.HistoryBasicBlockDetailQuery;
 
 import java.util.List;
 

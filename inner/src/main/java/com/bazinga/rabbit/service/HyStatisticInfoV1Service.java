@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.HyStatisticInfoV1;
-import com.bazinga.replay.query.HyStatisticInfoV1Query;
+import com.bazinga.rabbit.model.HyStatisticInfoV1;
+import com.bazinga.rabbit.query.HyStatisticInfoV1Query;
 
 import java.util.List;
 

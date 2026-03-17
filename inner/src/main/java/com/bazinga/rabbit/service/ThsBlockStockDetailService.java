@@ -1,7 +1,9 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.ThsBlockStockDetail;
-import com.bazinga.replay.query.ThsBlockStockDetailQuery;
+
+
+import com.bazinga.rabbit.model.ThsBlockStockDetail;
+import com.bazinga.rabbit.query.ThsBlockStockDetailQuery;
 
 import java.util.List;
 

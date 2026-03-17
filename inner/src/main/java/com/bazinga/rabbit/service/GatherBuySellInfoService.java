@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.GatherBuySellInfo;
-import com.bazinga.replay.query.GatherBuySellInfoQuery;
+import com.bazinga.rabbit.model.GatherBuySellInfo;
+import com.bazinga.rabbit.query.GatherBuySellInfoQuery;
 
 import java.util.List;
 

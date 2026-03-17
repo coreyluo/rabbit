@@ -1,7 +1,7 @@
 package com.bazinga.rabbit.service;
 
-import com.bazinga.replay.model.HotCirculateInfo;
-import com.bazinga.replay.query.HotCirculateInfoQuery;
+import com.bazinga.rabbit.model.HotCirculateInfo;
+import com.bazinga.rabbit.query.HotCirculateInfoQuery;
 
 import java.util.List;
 
